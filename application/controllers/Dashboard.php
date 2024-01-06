@@ -9,10 +9,22 @@ class Dashboard extends CI_Controller
     {
         include "LoginAPI.php";
         $API = new RouterosAPI();
+        // 1036 Login
         $API->connect($ip, $username, $password);
 
+        // 1009 Login
+        $API->connect($ip1009, $username1009, $password1009);
+
+        // PPP 1036
         $userPpp = $API->comm('/ppp/active/print');
+
+        // resource 1036
         $resource = $API->comm('/system/resource/print');
+
+        // resource 1009
+        $resource1009 = $API->comm('/system/resource/print');
+
+
         $resource = json_encode($resource);
         $resource = json_decode($resource, true);
         $interface = $API->comm('/interface/ethernet/print');
@@ -21,43 +33,19 @@ class Dashboard extends CI_Controller
             'cpu' => $resource['0']['cpu-load'],
             'uptime' => $resource['0']['uptime'],
             'systemName' => $resource['0']['board-name'],
-            'interface1' => $interface['8']['name'],
-            'interface2' => $interface['9']['name'],
-            'interface3' => $interface['1']['name'],
-            'interface4' => $interface['7']['name'],
+            'systemName1009' => $resource1009['0']['board-name'],
+            'cpu1009' => $resource1009['0']['cpu-load'],
+            'uptime1009' => $resource1009['0']['uptime'],
+            // 'interface1' => $interface['8']['name'],
+            // 'interface2' => $interface['9']['name'],
+            // 'interface3' => $interface['1']['name'],
+            // 'interface4' => $interface['7']['name'],
         ];
 
 
         $this->load->view('template/main');
         $this->load->view('dashboard', $data);
     }
-
-
-    // TRAFFIC
-    // public function traffic()
-    // {
-    //     include "LoginAPI.php";
-    //     $API = new RouterosAPI();
-    //     $API->connect($ip, $username, $password);
-
-    //     $GetInterfaceTraffic = $API->comm(
-    //         '/interface/monitor-traffic',
-    //         array(
-    //             'interface' => 'sfp-sfpplus1-From1009',
-    //             // 'interface2' => 'sfp-sfpplus2 - Uplink OLT',
-    //             'once' => '',
-    //         )
-    //     );
-
-    //     $rxBps = $GetInterfaceTraffic[0]['rx-bits-per-second'];
-    //     $txBps = $GetInterfaceTraffic[0]['tx-bits-per-second'];
-    //     $data = [
-    //         'rxBps' => $rxBps,
-    //         'txBps' => $txBps,
-    //     ];
-
-    //     $this->load->view('traffic/TrafficSFP1', $data);
-    // }
 
     public function trafficIN()
     {
@@ -104,6 +92,27 @@ class Dashboard extends CI_Controller
 
         $this->load->view('cpuLoad', $data);
     }
+
+
+    // CPULOAD 1009
+    public function cpuLoad1009()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        // 1009 Login
+        $API->connect($ip1009, $username1009, $password1009);
+        $resource = $API->comm('/system/resource/print');
+
+        $resource = json_encode($resource);
+        $resource = json_decode($resource, true);
+
+        $data = [
+            'cpu1009' => $resource['0']['cpu-load'],
+        ];
+
+        $this->load->view('cpuLoad1009', $data);
+    }
+
 
     // MEMORYLOAD
     public function memoryLoad()
@@ -156,7 +165,7 @@ class Dashboard extends CI_Controller
         //     'logMessage' => $log['0']['message'],
         // ];
         foreach ($log as $data) {
-            echo $data['message']. '<br>';
+            echo $data['message'] . '<br>';
             echo $data['topics'] . '<br>';
             echo $data['time'] . '<br>';
             echo $data['.id'] . '<br>';

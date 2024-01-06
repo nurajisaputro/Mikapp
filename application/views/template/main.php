@@ -43,12 +43,23 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
+            <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="<?= site_url('/dashboard') ?>" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <p class="nav-link" id="date">
+                    </p>
+                </li>
+                <li class="nav-item">
+                    <p class="nav-link" id="clock">
+                    </p>
                 </li>
             </ul>
         </nav>
@@ -223,7 +234,7 @@
         <script
             src="<?= base_url('assets/template/') ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <!-- JS LOAD -->
-        <script src="<?= base_url('assets/template/') ?>assets/main.js"></script>
+        <script src="<?= base_url('assets/template/') ?>assets/script.js"></script>
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 </body>
