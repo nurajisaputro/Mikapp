@@ -96,20 +96,20 @@
                             </a>
                             <ul class="nav nav-treeview" style="display: none;">
                                 <li class="nav-item">
-                                    <a  href="<?= site_url('/Traffic/SFP1') ?>" class="nav-link hover">
-                                        <i class="fa-solid fa-chart-line"></i>
+                                    <a href="<?= site_url('/Traffic/SFP1') ?>" class="nav-link hover">
+                                        <i class="fa-solid fa-chart-line nav-icon"></i>
                                         <p>Sfp Plus 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url('/Traffic/SFP2') ?>" class="nav-link hover">
-                                        <i class="fa-solid fa-chart-line"></i>
+                                        <i class="fa-solid fa-chart-line nav-icon"></i>
                                         <p>Sfp Plus 2</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url('/Traffic/ETH2') ?>" class="nav-link hover">
-                                        <i class="fa-solid fa-chart-line"></i>
+                                        <i class="fa-solid fa-chart-line nav-icon"></i>
                                         <p>Ether 2</p>
                                     </a>
                                 </li>
@@ -158,6 +158,24 @@
                                     </a>
                                 </li>
                                 <!-- /.Ping -->
+
+                                <!-- ALL LOG -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/log/log') ?>" class="nav-link">
+                                        <i class="fa-solid fa-scroll nav-icon"></i>
+                                        <p>ALL LOG</p>
+                                    </a>
+                                </li>
+                                <!-- /.ALL LOG -->
+
+                                <!-- PPPPOE LOG -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/log/pppLog') ?>" class="nav-link">
+                                        <i class="fa-solid fa-scroll nav-icon"></i>
+                                        <p>PPPOE LOG</p>
+                                    </a>
+                                </li>
+                                <!-- /.PPPOE LOG -->
                             </ul>
 
                         </li>
@@ -168,11 +186,10 @@
         <div class="">
             <!-- Main Footer -->
             <footer class="main-footer">
-                <!-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">NURAJI</a>.</strong>
-                All rights reserved.
+                <strong>Copyright &copy; 2024 NUR AJI.</strong>
                 <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 3.2.0
-                </div> -->
+                    <b>Version</b> 1.1
+                </div>
             </footer>
         </div>
         <!-- ./wrapper -->

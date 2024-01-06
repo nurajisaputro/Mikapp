@@ -69,6 +69,7 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                                <?php echo header("refresh: 300"); ?>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,3 @@
     </div>
 </div>
 </div>
-
-<script>
-
-</script>
