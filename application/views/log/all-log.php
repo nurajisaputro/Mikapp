@@ -32,8 +32,8 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">ALL PPPOE ACTIVE</h3>
-                        <button class="btn btn-secondary button" onclick="Reload()">Reload Pages</button>
+                        <h3 class="card-title">LOG MONITOR</h3>
+                        <button class="btn btn-secondary button" onclick="location.reload()">Reload Pages</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

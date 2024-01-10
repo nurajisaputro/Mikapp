@@ -7,27 +7,19 @@
     <title>Admin Dashboard</title>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- DataTables -->
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template/') ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template/') ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template/') ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
-    <link rel="stylesheet"
-        href="<?= base_url('assets/template/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>dist/css/adminlte.min.css">
     <!-- STYLE -->
@@ -61,6 +53,12 @@
                     <p class="nav-link" id="clock">
                     </p>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        LOG OUT
+                        <i class="fa-solid fa-right-from-bracket nav-icon ml-1"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -92,9 +90,19 @@
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                <div class="mt-2 d-flex">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <li class="nav-item mt-2">
+                            <a href="<?= site_url('/dashboard') ?>" class="nav-link hover">
+                                <i class="nav-icon fa-solid fa-house"></i>
+                                <p>
+                                    Dashboard
+
+                                </p>
+                            </a>
+                        </li>
+
 
                         <!-- INTERFACE -->
                         <li class="nav-item">
@@ -188,9 +196,53 @@
                                 </li>
                                 <!-- /.PPPOE LOG -->
                             </ul>
-
                         </li>
                         <!-- /. PPPOE MENU -->
+
+                        <!-- SYSTEM -->
+                        <hr>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa-solid fa-gear"></i>
+                                <p>
+                                    SYSTEM
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <!-- DROPDOWN -->
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <!-- App User -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/appUser/users') ?>" class="nav-link">
+                                        <i class="fa-solid fa-network-wired nav-icon"></i>
+                                        <p>APP USERS</p>
+                                    </a>
+                                </li>
+                                <!-- /.App User -->
+
+                                <!-- # -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-scroll nav-icon"></i>
+                                        <p>#</p>
+                                    </a>
+                                </li>
+                                <!-- /.# -->
+
+                                <!-- # -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-scroll nav-icon"></i>
+                                        <p>#</p>
+                                    </a>
+                                </li>
+                                <!-- /.# -->
+                            </ul>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+            </div>
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
@@ -199,7 +251,7 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2024 NUR AJI.</strong>
                 <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 1.1
+                    <b>Version</b> 1.2
                 </div>
             </footer>
         </div>
@@ -211,8 +263,7 @@
         <!-- Bootstrap -->
         <script src="<?= base_url('assets/template/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- overlayScrollbars -->
-        <script
-            src="<?= base_url('assets/template/') ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="<?= base_url('assets/template/') ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="<?= base_url('assets/template/') ?>dist/js/adminlte.js"></script>
 
@@ -227,12 +278,9 @@
 
         <!-- DataTables  & Plugins -->
         <script src="<?= base_url('assets/template/') ?>plugins/datatables/jquery.dataTables.min.js"></script>
-        <script
-            src="<?= base_url('assets/template/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script
-            src="<?= base_url('assets/template/') ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-        <script
-            src="<?= base_url('assets/template/') ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="<?= base_url('assets/template/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="<?= base_url('assets/template/') ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="<?= base_url('assets/template/') ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
         <!-- JS LOAD -->
         <script src="<?= base_url('assets/template/') ?>assets/script.js"></script>
 

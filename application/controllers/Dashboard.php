@@ -36,39 +36,11 @@ class Dashboard extends CI_Controller
             'systemName1009' => $resource1009['0']['board-name'],
             'cpu1009' => $resource1009['0']['cpu-load'],
             'uptime1009' => $resource1009['0']['uptime'],
-            // 'interface1' => $interface['8']['name'],
-            // 'interface2' => $interface['9']['name'],
-            // 'interface3' => $interface['1']['name'],
-            // 'interface4' => $interface['7']['name'],
         ];
 
 
         $this->load->view('template/main');
         $this->load->view('dashboard', $data);
-    }
-
-    public function trafficIN()
-    {
-        include "LoginAPI.php";
-        $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
-
-        $GetInterfaceTraffic = $API->comm(
-            '/interface/monitor-traffic',
-            array(
-                'interface' => 'sfp-sfpplus2 - Uplink OLT',
-                'once' => '',
-            )
-        );
-
-        $rxBps2 = $GetInterfaceTraffic[0]['rx-bits-per-second'];
-        $txBps2 = $GetInterfaceTraffic[0]['tx-bits-per-second'];
-        $data = [
-            'rxBps2' => $rxBps2,
-            'txBps2' => $txBps2,
-        ];
-
-        $this->load->view('traficIN', $data);
     }
 
 
@@ -149,28 +121,5 @@ class Dashboard extends CI_Controller
         ];
 
         $this->load->view('activeUser', $data);
-    }
-
-
-    public function Log()
-    {
-        include "LoginAPI.php";
-        $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
-
-        $log = $API->comm('/log/print');
-
-        // $data = [
-        //     'logPpp' => $log['10']['topics'],
-        //     'logMessage' => $log['0']['message'],
-        // ];
-        foreach ($log as $data) {
-            echo $data['message'] . '<br>';
-            echo $data['topics'] . '<br>';
-            echo $data['time'] . '<br>';
-            echo $data['.id'] . '<br>';
-        }
-
-        $this->load->view('log', $data);
     }
 }

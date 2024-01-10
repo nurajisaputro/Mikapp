@@ -15,7 +15,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>dist/css/adminlte.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/login.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/login.js">
 </head>
 
 <body class="hold-transition login-page bg-dark">
@@ -23,35 +22,43 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-secondary">
             <div class="card-header text-center bg-dark">
-                <p class="h1 text-white"><b>Login Dashboard</b></p>
+                <p class="h1 text-white"><b>Registration</b></p>
             </div>
             <div class="card-body bg-dark">
-                <p class="login-box-msg">Login To Access Dashboard</p>
+                <p class="login-box-msg">Registration New Username</p>
 
                 <form method="post">
                     <!-- username -->
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username') ?>">
+                        <input type="text" class="form-control" placeholder="Create username" name="username" value="<?= set_value('username') ?>">
                     </div>
                     <?= form_error('username',  '<small class="text-danger">', '</small>') ?>
-                    <!-- password login -->
+
+                    <!-- password1 -->
                     <div class="input-group mb-1 mt-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password" value="<?= set_value('password') ?>">
+                        <input type="password" class="form-control" placeholder="Create Password" name="password1" value="<?= set_value('password1') ?>">
                     </div>
-                    <?= form_error('password',  '<small class="text-danger">', '</small>') ?>
+                    <?= form_error('password1',  '<small class="text-danger">', '</small>') ?>
+
+                    <!-- password2 -->
+                    <div class="input-group mb-1 mt-3">
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="password2" value="<?= set_value('password2') ?>">
+                    </div>
+                    <?= form_error('password2',  '<small class="text-danger">', '</small>') ?>
+
+                    <!-- Submit -->
                     <div class="row mt-3">
                         <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block mt-2">
-                                Sign In
+                            <button type="submit" class="btn btn-primary btn-block mt-2" onclick="TEST()">
+                                Submit
                             </button>
                         </div>
                     </div>
-                    <div class="add_alert" id="alert_login">
-                        <?= $this->session->set_flashdata('message'); ?>
-                        <div class="alert alert-danger mt-4" role="alert">
-                            <h5 class="alert-heading">Login Gagal</h5>
+                    <div class="add_alert" id="alert">
+                        <div class="alert alert-success mt-4" role="alert">
+                            <h5 class="alert-heading">Berhasil</h5>
                             <p>
-                                Silakan cek ulang password
+                                Username Berhasil di tambahkan
                             </p>
                         </div>
                     </div>

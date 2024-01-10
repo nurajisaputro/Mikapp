@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Andrey Andreev
  * @link		https://codeigniter.com/user_guide/libraries/sessions.html
  */
+#[\AllowDynamicProperties]
 class CI_Session {
 
 	/**
@@ -67,6 +68,7 @@ class CI_Session {
 	 * @param	array	$params	Configuration parameters
 	 * @return	void
 	 */
+
 	public function __construct(array $params = array())
 	{
 		// No sessions under CLI
