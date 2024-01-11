@@ -4,7 +4,7 @@ function TEST() {
     console.log("berhasil")
 }
 
-function showAlert(){
-//    document.getElementById('alert_login').style.display = "block"
-alert('GAGAL')
+function showAlert() {
+    //    document.getElementById('alert_login').style.display = "block"
+    console.log ('testtt')
 }

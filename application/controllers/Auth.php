@@ -8,12 +8,17 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     public function index()
     {
-        $this->form_validation->set_rules('username', 'Username', 'required|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim', [
+            'required' => 'Please input Username'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim', [
+            'required' => 'Please input Password'
+        ]);
 
         // Validasi Login
         if ($this->form_validation->run() == false) {
@@ -24,25 +29,36 @@ class Auth extends CI_Controller
     }
 
     // 
-    private function _login(){
+    private function _login()
+    {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['username'=> $username])->row_array();
+        $user = $this->db->get_where('user', ['username' => $username])->row_array();
 
-        if($user){
-            if(password_verify($password, $user['password'])){
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
                     'role_id' => $user['role_id'],
                 ];
-                // $this->session->set_userdata($data);
+                $this->session->set_userdata($data);
                 redirect('dashboard');
-            }else{
-                echo 'GAGAL1';
+            } else {
+                echo "
+                <script>alert 
+                    ('Password Yang Anda Masukkan Salah')
+                </script>
+                ";
+               $this->load->view('auth/login',);
             }
-        }else{
-            echo 'GAGAL2';
+        } else {
+            echo "
+            <script>alert 
+                ('Login Gagal Username Tidak Di Temukan')
+            </script>
+            ";
+            $this->load->view('auth/login',);
         }
     }
 
@@ -66,11 +82,16 @@ class Auth extends CI_Controller
                 ),
                 'role_id' => 1,
                 'is_active' => 1,
-                'data_created' => time()
+                'data_created' => date('dmy')
             ];
 
             $this->db->insert('user', $data);
-            redirect('dashboard');
+            echo "
+            <script>alert 
+                ('Data Berhasil Di tambahkan');
+            </script>
+            ";
+            redirect('auth');
         }
     }
 }

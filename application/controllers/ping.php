@@ -5,6 +5,8 @@ class ping extends CI_Controller
 {
     public function ping()
     {
+        $this->load->view('template/main');
+        
         include "LoginAPI.php";
         $API = new RouterosAPI();
         $API->connect($ip, $username, $password);
@@ -31,7 +33,6 @@ class ping extends CI_Controller
             'item_list' => $iplist
         ];
 
-        $this->load->view('template/main');
         $this->load->view('ping/ping', $data);
     }
 }

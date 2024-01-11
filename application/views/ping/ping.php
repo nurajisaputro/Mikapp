@@ -4,8 +4,8 @@
 $iplist = array
 (
     array("1", "192.168.2.101", "UBUNTU SERVER", ""),
-    array("2", "10.10.124.1", "METRO ICON", "a"),
-    array("3", "103.189.249.11", "METRO HSP", "a"),
+    array("2", "10.10.124.1", "METRO HSP", ""),
+    array("3", "103.189.249.11", "METRO ICON", ""),
     array("4", "192.168.3.1", "CCR 1036", ""),
     array("5", "10.10.101.1", "CCR 1009", ""),
     array("6", "192.168.60.2", "RB750", ""),

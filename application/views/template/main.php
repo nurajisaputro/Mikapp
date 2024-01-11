@@ -54,7 +54,7 @@
                     </p>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= site_url('/auth') ?>" class="nav-link">
                         LOG OUT
                         <i class="fa-solid fa-right-from-bracket nav-icon ml-1"></i>
                     </a>

@@ -19,9 +19,12 @@ class appUser extends CI_Controller
 
         // $user = $this->db->get_where('user', 'username')->row_array();
 
-        $query = $this->db->query('SELECT `id`, `name`, `username`, `password`, `role_id`, `is_active`, `data_created` FROM `user` WHERE 1');
+        // $query = $this->db->query('SELECT `id`, `name`, `username`, `password`, `role_id`, `is_active`, `data_created` FROM `user` WHERE 1');
 
-        var_dump($query);
+        // var_dump($query);
+        date_default_timezone_set('Asia/Jakarta');
+
+        echo date('dmy');
     }
 
 }
