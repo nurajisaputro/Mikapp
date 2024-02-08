@@ -8,7 +8,7 @@
     // USERNAME PASSWORD API PORT 8728 1009
     $ip1009 = "10.10.101.1";
     $username1009 = "nuraji";
-    $password1009 = "nuraji12";
+    $password1009 = "";
 
 
     // USERNAME TEST
