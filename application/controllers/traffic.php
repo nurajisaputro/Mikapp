@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class traffic extends CI_Controller
+class Traffic extends CI_Controller
 {
 
     // SFP PLUS 1

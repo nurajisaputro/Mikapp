@@ -154,6 +154,15 @@
                                     </a>
                                 </li>
                                 <!-- /.PPPACTIVE -->
+                                
+                                <!-- PPPPOE LOG -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/log/pppLog') ?>" class="nav-link">
+                                        <i class="fa-solid fa-scroll nav-icon"></i>
+                                        <p>PPPOE LOG</p>
+                                    </a>
+                                </li>
+                                <!-- /.PPPOE LOG -->
                             </ul>
                         </li>
                         <!-- /. PPPOE MENU -->
@@ -186,15 +195,6 @@
                                     </a>
                                 </li>
                                 <!-- /.ALL LOG -->
-
-                                <!-- PPPPOE LOG -->
-                                <li class="nav-item">
-                                    <a href="<?= site_url('/log/pppLog') ?>" class="nav-link">
-                                        <i class="fa-solid fa-scroll nav-icon"></i>
-                                        <p>PPPOE LOG</p>
-                                    </a>
-                                </li>
-                                <!-- /.PPPOE LOG -->
                             </ul>
                         </li>
                         <!-- /. PPPOE MENU -->

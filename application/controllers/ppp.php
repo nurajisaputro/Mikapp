@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class ppp extends CI_Controller
+class Ppp extends CI_Controller
 {
     public function users()
     {

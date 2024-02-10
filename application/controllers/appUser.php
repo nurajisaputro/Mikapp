@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class appUser extends CI_Controller
+class AppUser extends CI_Controller
 {
     public function  __construct()
     {

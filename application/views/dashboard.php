@@ -33,7 +33,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">FREE MEMORY</span>
                             <span class="info-box-number">
-                                <span id="boardname1036"></span>
+                                <span id="memoryLoad"></span>
                             </span>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                 <!-- USER ACTIVE -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">USER PPP ACTIVE</span>
                             <span class="info-box-number">
@@ -57,7 +57,7 @@
                 <!-- UPTIME -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-power-off"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-power-off"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">UP-TIME</span>
                             <span class="info-box-number">
@@ -68,10 +68,10 @@
                 </div>
                 <!-- /.UPTIME -->
 
-                <!-- UPTIME -->
+                <!-- TEMPERATURE -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">TEMPERATURE</span>
                             <span class="info-box-number">
@@ -80,13 +80,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.UPTIME -->
+                <!-- /.TEMPERATURE -->
 
 
                 <!-- CPU TEMP -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">CPU TEMPERATURE</span>
                             <span class="info-box-number">
@@ -99,7 +99,7 @@
                 </div>
                 <!-- /.CPU TEMP -->
 
-                <!-- UPTIME -->
+                <!-- PSU 1 -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-plug-circle-bolt"></i></span>
@@ -111,9 +111,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.UPTIME -->
+                <!-- /.PSU 1 -->
 
-                <!-- UPTIME -->
+                <!-- PSU 2 -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-plug-circle-bolt"></i></span>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.UPTIME -->
+                <!-- /.PSU 2 -->
             </div>
             <!-- /.HEAD INFO -->
         </div>
@@ -176,7 +176,7 @@
                 <!-- UPTIME -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-power-off"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-power-off"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">UP-TIME</span>
                             <span class="info-box-number">
@@ -190,7 +190,7 @@
                 <!-- BODY TEMP -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">TEMPERATURE</span>
                             <span class="info-box-number">
@@ -204,7 +204,7 @@
                 <!-- CPU TEMP -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-temperature-three-quarters"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">CPU TEMPERATURE</span>
                             <span class="info-box-number">
