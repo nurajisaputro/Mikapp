@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
 
+    <link rel="shortcut icon" href="<?= base_url('assets/template/') ?>assets/img/test.png" type="image/x-icon">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- DataTables -->
@@ -154,7 +156,16 @@
                                     </a>
                                 </li>
                                 <!-- /.PPPACTIVE -->
-                                
+
+                                <!--ISOLIR PPPOE -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/ppp/isolir') ?>" class="nav-link">
+                                        <i class="fa-solid fa-link-slash nav-icon"></i>
+                                        <p>ISOLIR PPPOE</p>
+                                    </a>
+                                </li>
+                                <!-- /.ISOLIR PPPOE -->
+
                                 <!-- PPPPOE LOG -->
                                 <li class="nav-item">
                                     <a href="<?= site_url('/log/pppLog') ?>" class="nav-link">
@@ -163,9 +174,12 @@
                                     </a>
                                 </li>
                                 <!-- /.PPPOE LOG -->
+
                             </ul>
                         </li>
                         <!-- /. PPPOE MENU -->
+
+
 
                         <!-- TOOLS -->
                         <li class="nav-item">
@@ -197,7 +211,7 @@
                                 <!-- /.ALL LOG -->
                             </ul>
                         </li>
-                        <!-- /. PPPOE MENU -->
+                        <!-- /. TOOLS -->
 
                         <!-- SYSTEM -->
                         <hr>

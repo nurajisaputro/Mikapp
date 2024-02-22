@@ -7,14 +7,15 @@ class Ppp extends CI_Controller
     {
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
 
         $userPpp = $API->comm('/ppp/active/print');
         $resource = $API->comm('/system/resource/print');
         $resource = json_encode($resource);
         $resource = json_decode($resource, true);
 
-        $data =[
+        $data = [
             'systemName' => $resource['0']['board-name'],
             'countPpp' => count($userPpp),
             'activePpp' => $userPpp,
@@ -25,14 +26,15 @@ class Ppp extends CI_Controller
     }
 
 
-    public function addUser(){
+    public function addUser()
+    {
         include "LoginAPI.php";
         $API = new RouterosAPI();
         $API->connect($ip, $username, $password);
         $post = $this->input->post(null, true);
         $service = "pppoe";
 
-        $API->comm("ppp/secret/add",array(
+        $API->comm("ppp/secret/add", array(
             "name" => $post['user'],
             "password" => $post['password'],
             "service" => $service,
@@ -43,6 +45,61 @@ class Ppp extends CI_Controller
         $this->load->view('ppp/addUser');
         redirect('ppp/addUser');
     }
-}
 
-?>
+    public function isolir()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
+        $profile = "ProfileDisconnect";
+
+        $isolir = $API->comm("/ppp/secret/print", array(
+            "?profile" => $profile,
+        ));
+
+        $data = [
+            "isolir" => $isolir,
+        ];
+        $this->load->view('template/main');
+        $this->load->view("ppp/isolir", $data);
+    }
+
+    public function enableUser5M($id)
+    {
+        ini_set('date.timezone', 'Asia/Jakarta');
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($iptest, $usertest, $passtest);
+        
+        $now = date('d/m | H:i');
+        $id =  '*' . $id;
+        $comment = "Lunas | " . $now;
+        $newProfile = "testing";
+
+
+        $API->comm('/ppp/secret/set', array(
+            ".id" => $id,
+            "profile" => $newProfile,
+            "comment" => $comment
+        ));
+
+        $API->comm('/ppp/active');
+
+        redirect("ppp/isolir");
+    }
+
+    public function test($name)
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
+
+        $API->comm('/ppp/active/remove',array(
+            "?name"=>$name
+        ));
+
+        echo $name;
+    }
+}
