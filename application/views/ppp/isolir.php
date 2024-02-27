@@ -61,12 +61,12 @@
                                         foreach ($isolir as $data) {
                                         ?>
                                             <tr>
-                                                <?php 
+                                                <?php
                                                 $id = str_replace('*', '', $data['.id']);
                                                 $name = $data['name'];
                                                 ?>
 
-                                                
+
                                                 <th>
                                                     <?= $i++ ?>
                                                 </th>
@@ -84,9 +84,9 @@
                                                 </th> -->
                                                 <th>
                                                     <div class="row">
-                                                        <a href="<?= site_url('ppp/enableUser5M/' . $id) ?>" class="btn btn-success col m-1">5Mbps</i></a>
-                                                        <a href="<?= site_url('ppp/test/' . $name) ?>" class="btn btn-success col m-1">10Mbps</i></a>
-                                                        <a href="<?= site_url('ppp/enableUser20M/' . $data['name']) ?>" class="btn btn-success col m-1">20Mbps</i></a>
+                                                        <a href="<?= site_url('ppp/enableUser5M/' . $name); ?>" class="btn btn-success col m-1">5Mbps</a>
+                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name)?>" class="btn btn-success col m-1">10Mbps</a>
+                                                        <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn btn-success col m-1">20Mbps</a>
                                                     </div>
                                                 </th>
                                             </tr>
