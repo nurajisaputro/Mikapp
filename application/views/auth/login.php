@@ -28,7 +28,7 @@
             <div class="card-body bg-dark">
                 <p class="login-box-msg">Login To Access Dashboard</p>
 
-                <form method="post">
+                <form method="post" action="<?= base_url('auth'); ?>">
                     <!-- username -->
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Username" name="username" value="<?= set_value('username') ?>">

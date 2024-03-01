@@ -68,6 +68,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
             'is_unique' => 'Username already used. Please use another username'
         ]);
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('password1', 'Password', 'required|trim');
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
@@ -75,6 +76,7 @@ class Auth extends CI_Controller
             $this->load->view('auth/add-user-login',);
         } else {
             $data = [
+                'name' => $this->input->post('name'),
                 'username' => $this->input->post('username'),
                 'password' => password_hash(
                     $this->input->post('password2'),
@@ -93,5 +95,13 @@ class Auth extends CI_Controller
             ";
             redirect('auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('role_id');
+
+        redirect('auth');
     }
 }

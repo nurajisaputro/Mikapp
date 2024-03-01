@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array("url", "mikweb", "security");
+$autoload['helper'] = array("url", "mikweb", "security", "isLogin");
 
 /*
 | -------------------------------------------------------------------

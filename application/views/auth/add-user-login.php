@@ -28,8 +28,13 @@
                 <p class="login-box-msg">Registration New Username</p>
 
                 <form method="post">
-                    <!-- username -->
+                    <!-- Name -->
                     <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your Name" name="name" value="<?= set_value('name') ?>">
+                    </div>
+
+                    <!-- username -->
+                    <div class="input-group mb-1 mt-3">
                         <input type="text" class="form-control" placeholder="Create username" name="username" value="<?= set_value('username') ?>">
                     </div>
                     <?= form_error('username',  '<small class="text-danger">', '</small>') ?>

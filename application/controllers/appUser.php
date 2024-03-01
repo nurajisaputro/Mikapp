@@ -8,12 +8,24 @@ class AppUser extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
+        is_logged_in();
     }
 
-    public function index(){
-        $this->users();
+    public function index()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
+
+        if ($data = 'NULL') {
+            echo "<script>alert ('IF');</script>";
+        } else {
+            var_dump($data);
+            echo "<script>alert ('ELSE');</script>";
+        }
+        // echo $data['user']['name'];
     }
-    public function users(){
+    public function users()
+    {
         // $this->load->view('template/main');
         // $this->load->view('app-users/users');
 
@@ -26,5 +38,4 @@ class AppUser extends CI_Controller
 
         echo date('dmy');
     }
-
 }

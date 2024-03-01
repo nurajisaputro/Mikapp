@@ -56,7 +56,7 @@
                     </p>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= site_url('/auth') ?>" class="nav-link">
+                    <a href="<?= site_url('/auth/logout') ?>" class="nav-link">
                         LOG OUT
                         <i class="fa-solid fa-right-from-bracket nav-icon ml-1"></i>
                     </a>
@@ -80,7 +80,13 @@
                         <i class="fa-solid fa-user-tie mt-2"></i>
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">NUR AJI</a>
+                        <a href="#" class="d-block">
+                            <?php
+                            $data['user'] = $this->db->get_where('user', ['username' =>
+                            $this->session->userdata('username')])->row_array();
+                            echo $data['user']['name'];
+                            ?>
+                        </a>
                     </div>
                 </div>
 
