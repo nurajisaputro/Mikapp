@@ -21,8 +21,8 @@
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
-            <div class="device-title">
-                <span class="device">DEVICE NAME</span>
+            <div class="device-title text-center">
+                <span class="device">USER YANG TERISOLIR</span>
                 <span class="device">
                 </span>
             </div>
@@ -31,30 +31,36 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Disabled PPPoE</h3>
+                        <!-- <h3 class="card-title">Disabled PPPoE</h3>
+                        <input class="input btn-primary" type="text" onclick="" placeholder="Cari">
                         <button class="btn btn-secondary button" onclick="location.reload()">Reload Pages</button>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="ml-3 mb-3">
                                 <p>User PPPoE yang di isolir</p>
+                                <!-- <div class="item-center text-align-center">
+                                    <input type="text" class="btn btn-secondary button" placeholder="Cari Nama User">
+                                    <button type="submit" class="btn btn-secondary button mt-1">Cari</button>
+                                </div> -->
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row _tabel">
                             <div class="col-sm-12">
                                 <table id="DataTable" class="table table-bordered dataTable dtr-inline" aria-describedby="example1_info">
-                                    <thead>
+                                    <thead class="_tabel">
                                         <tr>
-                                            <th><?= count($isolir) ?> Users</th>
-                                            <th>Id</th>
+                                            <!-- <th><?= count($isolir) ?> Users</th> -->
+                                            <!-- <th>Id</th> -->
                                             <th>Username</th>
                                             <th>Profile</th>
+                                            <th>Comment</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody class="_tabel">
                                         <?php
                                         $i = 1;
 
@@ -62,30 +68,29 @@
                                         ?>
                                             <tr>
                                                 <?php
-                                                $id = str_replace('*', '', $data['.id']);
-                                                $name = $data['name'];
+                                                $name = str_replace('@backbone.net', '', $data['name']);
+                                                $a = $data['name'];
                                                 ?>
 
-
-                                                <th>
+                                                <!-- <th>
                                                     <?= $i++ ?>
-                                                </th>
-                                                <th>
+                                                </th> -->
+                                                <!-- <th>
                                                     <?= $data['.id'] ?>
-                                                </th>
+                                                </th> -->
                                                 <th>
-                                                    <?= $data['name'] ?>
+                                                    <?= $name ?>
                                                 </th>
                                                 <th>
                                                     <?= $data['profile'] ?>
                                                 </th>
-                                                <!-- <th>
+                                                <th>
                                                     <?= $data['comment'] ?>
-                                                </th> -->
+                                                </th>
                                                 <th>
                                                     <div class="row">
                                                         <a href="<?= site_url('ppp/enableUser5M/' . $name); ?>" class="btn btn-success col m-1">5Mbps</a>
-                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name)?>" class="btn btn-success col m-1">10Mbps</a>
+                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name) ?>" class="btn btn-success col m-1">10Mbps</a>
                                                         <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn btn-success col m-1">20Mbps</a>
                                                     </div>
                                                 </th>

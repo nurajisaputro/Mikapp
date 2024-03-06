@@ -16,8 +16,6 @@ class Dashboard extends CI_Controller
         $API = new RouterosAPI();
         // 1036 Login
         $API->connect($ip, $username, $password);
-        // 1009 Login
-        // $API->connect($ip1009, $username1009, $password1009);
         // resource 1036
         $resource = $API->comm('/system/resource/print');
         // resource 1009

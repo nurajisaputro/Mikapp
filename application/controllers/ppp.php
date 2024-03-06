@@ -8,7 +8,7 @@ class Ppp extends CI_Controller
         parent::__construct();
         is_logged_in();
     }
-    
+
     public function users()
     {
         include "LoginAPI.php";
@@ -56,8 +56,8 @@ class Ppp extends CI_Controller
     {
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        // $API->connect($ip, $username, $password);
-        $API->connect($iptest, $usertest, $passtest);
+        $API->connect($ip, $username, $password);
+        // $API->connect($iptest, $usertest, $passtest);
         $profile = "ProfileDisconnect";
 
         $isolir = $API->comm("/ppp/secret/print", array(
@@ -74,16 +74,21 @@ class Ppp extends CI_Controller
     // ENABLE USER 5M
     public function enableUser5M($name)
     {
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
         ini_set('date.timezone', 'Asia/Jakarta');
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        // $API->connect($ip, $username, $password);
-        $API->connect($iptest, $usertest, $passtest);
+        $API->connect($ip, $username, $password);
+
+        // API test
+        // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
-        $comment = "Lunas | " . $now;
+        $who = $data['user']['name'];
+        $comment = "Lunas | " . $now . " - $who";
         $newProfile = "Profile5M";
-
+        $name = $name . "@backbone.net";
         // Get ID
         $getId = $API->comm(
             '/ppp/secret/print',
@@ -91,7 +96,7 @@ class Ppp extends CI_Controller
                 '?name' => $name
             )
         );
-        $id = $getId["0"]['.id'];
+        $id = $getId['0']['.id'];
 
         // SET PROFILE
         $API->comm('/ppp/secret/set', array(
@@ -146,11 +151,9 @@ class Ppp extends CI_Controller
             '?name' => $name
         ));
         $removeId = $removeId["0"]['.id'];
-
         $API->comm('/ppp/active/remove', array(
             ".id" => $removeId
         ));
-
         redirect('ppp/isolir');
     }
     // ENABLE USER 20M
