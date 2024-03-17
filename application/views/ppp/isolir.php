@@ -37,13 +37,27 @@
                     </div> -->
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div>
                             <div class="ml-3 mb-3">
                                 <p>User PPPoE yang di isolir</p>
-                                <!-- <div class="item-center text-align-center">
-                                    <input type="text" class="btn btn-secondary button" placeholder="Cari Nama User">
-                                    <button type="submit" class="btn btn-secondary button mt-1">Cari</button>
-                                </div> -->
+                                <!-- <div class="">
+                                    <select name="bulan" id="bulan" class="btn bg-secondary button" placeholder="Cari Nama User">
+                                        <option value="">--PILIH BULAN--</option>
+                                        <option value="1">Januari</option>
+                                        <option value="2">February</option>
+                                        <option value="3">Maret</option>
+                                        <option value="4">April</option>
+                                        <option value="5">Mei</option>
+                                        <option value="6">Juni</option>
+                                        <option value="7">Juli</option>
+                                        <option value="8">Agustus</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <a href="findMonth" type="submit" class="btn btn-success button mt-2">Cari</a> -->
                             </div>
                         </div>
                         <div class="row _tabel">
@@ -51,7 +65,7 @@
                                 <table id="DataTable" class="table table-bordered dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead class="_tabel">
                                         <tr>
-                                            <!-- <th><?= count($isolir) ?> Users</th> -->
+                                            <th><?= count($isolir) ?> Users</th>
                                             <!-- <th>Id</th> -->
                                             <th>Username</th>
                                             <th>Profile</th>
@@ -72,9 +86,9 @@
                                                 $a = $data['name'];
                                                 ?>
 
-                                                <!-- <th>
+                                                <th>
                                                     <?= $i++ ?>
-                                                </th> -->
+                                                </th>
                                                 <!-- <th>
                                                     <?= $data['.id'] ?>
                                                 </th> -->
@@ -90,8 +104,8 @@
                                                 <th>
                                                     <div class="row">
                                                         <a href="<?= site_url('ppp/enableUser5M/' . $name); ?>" class="btn btn-success col m-1">5Mbps</a>
-                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name) ?>" class="btn btn-success col m-1">10Mbps</a>
-                                                        <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn btn-success col m-1">20Mbps</a>
+                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name) ?>" class="btn bg-info col m-1">10Mbps</a>
+                                                        <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn bg-orange col m-1">20Mbps</a>
                                                     </div>
                                                 </th>
                                             </tr>

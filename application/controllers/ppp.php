@@ -59,13 +59,18 @@ class Ppp extends CI_Controller
         $API->connect($ip, $username, $password);
         // $API->connect($iptest, $usertest, $passtest);
         $profile = "ProfileDisconnect";
+        $test = "maret";
 
         $isolir = $API->comm("/ppp/secret/print", array(
             "?profile" => $profile,
         ));
 
+        $tesing = $API->comm("/ppp/secret/print", array(
+            "?comment" => $test,
+        ));
+
         $data = [
-            "isolir" => $isolir,
+            "isolir" => $tesing,
         ];
         $this->load->view('template/main');
         $this->load->view("ppp/isolir", $data);
@@ -124,7 +129,9 @@ class Ppp extends CI_Controller
         ini_set('date.timezone', 'Asia/Jakarta');
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        $API->connect($iptest, $usertest, $passtest);
+        $API->connect($ip, $username, $password);
+
+        // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
         $comment = "Lunas | " . $now;
@@ -156,13 +163,15 @@ class Ppp extends CI_Controller
         ));
         redirect('ppp/isolir');
     }
+
     // ENABLE USER 20M
-    public function enableUser20M($name)
-    {
+    public function enableUser20M($name){
         ini_set('date.timezone', 'Asia/Jakarta');
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        $API->connect($iptest, $usertest, $passtest);
+        $API->connect($ip, $username, $password);
+
+        // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
         $comment = "Lunas | " . $now;
@@ -195,5 +204,11 @@ class Ppp extends CI_Controller
         ));
 
         redirect('ppp/isolir');
+    }
+
+    public function findMonth(){
+        $month = $this->input->post('bulan');
+        $a = $_POST('bulan');
+        echo $a;
     }
 }
