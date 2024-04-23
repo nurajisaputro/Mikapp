@@ -1,0 +1,12 @@
+._button{
+    background-color: #00ACFC;
+    border-radius: 8px;
+    border: 5px solid #00ACFC;
+    margin-top: 5px;
+}
+
+._form{
+    align-items: center;
+    width: 500px;
+    background-color: rebeccapurple;
+}

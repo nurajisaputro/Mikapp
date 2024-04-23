@@ -1,7 +1,7 @@
 <?php
     // USERNAME PASSWORD API PORT 8728 1036 8g 2s+
     $ip = "192.168.3.1";
-    $username = "nurajisaputro";
+    $username = "mikwebAPI";
     $password = "nurajisaputro123";
 
 

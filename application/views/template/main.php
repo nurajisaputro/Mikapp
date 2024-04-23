@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>dist/css/adminlte.min.css">
     <!-- STYLE -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/test.css">
+    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/style.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/dashboard.css">
     <!-- Chart Js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

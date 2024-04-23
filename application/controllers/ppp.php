@@ -7,6 +7,7 @@ class Ppp extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        ini_set('date.timezone', 'Asia/Jakarta');
     }
 
     public function users()
@@ -52,6 +53,12 @@ class Ppp extends CI_Controller
         redirect('ppp/addUser');
     }
 
+    // public function findMonth()
+    // {
+    //     // echo $month;
+    //     $this->isolir($m);
+    // }
+
     public function isolir()
     {
         include "LoginAPI.php";
@@ -59,19 +66,30 @@ class Ppp extends CI_Controller
         $API->connect($ip, $username, $password);
         // $API->connect($iptest, $usertest, $passtest);
         $profile = "ProfileDisconnect";
-        $test = "maret";
 
-        $isolir = $API->comm("/ppp/secret/print", array(
-            "?profile" => $profile,
-        ));
+        $getMonth = $this->input->post('bulan');
+        if ($getMonth == null) {
+            $month = "All";
+        } else {
+            $month = $getMonth;
+        }
 
-        $tesing = $API->comm("/ppp/secret/print", array(
-            "?comment" => $test,
-        ));
+
+        if ($month == "All") {
+            $isolirUsers = $API->comm("/ppp/secret/print", array(
+                "?profile" => $profile,
+            ));
+        } else {
+            $isolirUsers = $API->comm("/ppp/secret/print", array(
+                "?comment" => $month,
+            ));
+        }
 
         $data = [
-            "isolir" => $tesing,
+            "isolir" => $isolirUsers,
+            "month" => $month,
         ];
+
         $this->load->view('template/main');
         $this->load->view("ppp/isolir", $data);
     }
@@ -79,9 +97,10 @@ class Ppp extends CI_Controller
     // ENABLE USER 5M
     public function enableUser5M($name)
     {
+        // GET USER FROM LOGIN
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
-        ini_set('date.timezone', 'Asia/Jakarta');
+        // BASE API
         include "LoginAPI.php";
         $API = new RouterosAPI();
         $API->connect($ip, $username, $password);
@@ -89,10 +108,13 @@ class Ppp extends CI_Controller
         // API test
         // $API->connect($iptest, $usertest, $passtest);
 
-        $now = date('d/m | H:i');
+        // USER FROM LOGIN
         $who = $data['user']['name'];
+        $now = date('d/m | H:i');
         $comment = "Lunas | " . $now . " - $who";
+        // AKTIFASI PAKET
         $newProfile = "Profile5M";
+        // REPLACE USERNAME
         $name = $name . "@backbone.net";
         // Get ID
         $getId = $API->comm(
@@ -126,16 +148,19 @@ class Ppp extends CI_Controller
     // ENABLE USER 10M
     public function enableUser10M($name)
     {
-        ini_set('date.timezone', 'Asia/Jakarta');
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
+
         include "LoginAPI.php";
         $API = new RouterosAPI();
         $API->connect($ip, $username, $password);
-
         // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
-        $comment = "Lunas | " . $now;
+        $who = $data['user']['name'];
+        $comment = "Lunas | " . $now . " - $who";
         $newProfile = "Profile10M";
+        $name = $name . "@backbone.net";
 
         // Get ID
         $getId = $API->comm(
@@ -165,8 +190,10 @@ class Ppp extends CI_Controller
     }
 
     // ENABLE USER 20M
-    public function enableUser20M($name){
-        ini_set('date.timezone', 'Asia/Jakarta');
+    public function enableUser20M($name)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
         include "LoginAPI.php";
         $API = new RouterosAPI();
         $API->connect($ip, $username, $password);
@@ -174,8 +201,10 @@ class Ppp extends CI_Controller
         // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
-        $comment = "Lunas | " . $now;
+        $who = $data['user']['name'];
+        $comment = "Lunas | " . $now . " - $who";
         $newProfile = "Profile20M";
+        $name = $name . "@backbone.net";
 
         // Get ID
         $getId = $API->comm(
@@ -206,9 +235,59 @@ class Ppp extends CI_Controller
         redirect('ppp/isolir');
     }
 
-    public function findMonth(){
-        $month = $this->input->post('bulan');
-        $a = $_POST('bulan');
-        echo $a;
+
+    public function Disable($name)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip, $username, $password);
+
+        // $API->connect($iptest, $usertest, $passtest);
+
+        $now = date('d/m | H:i');
+        $who = $data['user']['name'];
+        // $comment = "Lunas | " . $now . " - $who";
+
+        // COMMENT MANUAL
+        $comment = "april";
+        $newProfile = "ProfileDisconnect";
+        $name = $name . "@backbone.net";
+
+        // Get ID
+        $getId = $API->comm(
+            '/ppp/secret/print',
+            array(
+                '?name' => $name
+            )
+        );
+        $id = $getId["0"]['.id'];
+
+        // SET PROFILE
+        $API->comm('/ppp/secret/set', array(
+            ".id" => $id,
+            "profile" => $newProfile,
+            "comment" => $comment
+        ));
+
+        // REMOVE ACTIVE
+        $removeId = $API->comm('/ppp/active/print', array(
+            '?name' => $name
+        ));
+        $removeId = $removeId["0"]['.id'];
+
+        $API->comm('/ppp/active/remove', array(
+            ".id" => $removeId
+        ));
+
+        redirect('ppp/isolir');
+    }
+
+
+    public function test()
+    {
+        $this->load->view('template/main');
+        $this->load->view("ppp/test",);
     }
 }

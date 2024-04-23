@@ -6,7 +6,8 @@
             <div class="device-title">
                 <span class="device">DEVICE NAME</span>
                 <span class="device">
-                    <?= $name1 ?>
+                <span id="boardname1036"></span>
+
                 </span>
             </div>
             <!-- HEAD INFO -->
@@ -180,7 +181,9 @@
                         <div class="info-box-content">
                             <span class="info-box-text">UP-TIME</span>
                             <span class="info-box-number">
-                                <div id="uptime1009"></div>
+                                <div id="uptime1009">
+                                    
+                                </div>
                             </span>
                         </div>
                     </div>
