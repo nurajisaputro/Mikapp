@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="DataTable" class="table table-bordered  dataTable dtr-inline"
+                                <table id="DataTable" class="table table-striped table-dark  dataTable dtr-inline"
                                     aria-describedby="example1_info">
                                     <thead>
                                         <tr>
@@ -58,13 +58,15 @@
                                     <tbody>
                                         <?php
                                         foreach (array_reverse($activePpp) as $data) {
+                                            // NAME USER
+                                            $name = str_replace('@backbone.net', '', $data['name']);
                                             ?>
                                             <tr>
                                                 <th>
                                                     <?= $data['.id'] ?>
                                                 </th>
                                                 <th>
-                                                    <?= $data['name'] ?>
+                                                    <?= $name ?>
                                                 </th>
                                                 <th>
                                                     <?= $data['address'] ?>
@@ -74,7 +76,6 @@
                                                 </th>
                                                 <th>
                                                     <?= $data['uptime'] ?>
-                                                </th>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

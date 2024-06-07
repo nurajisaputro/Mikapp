@@ -17,6 +17,17 @@ class Ccr1009 extends CI_Controller
         $resource = $API->comm('/system/resource/print');
         echo ($resource['0']['board-name']);
     }
+
+    public function users()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip1009, $username1009, $password1009);
+
+        $userPpp = $API->comm('/ppp/active/print');
+        echo (count($userPpp));
+    }
+
     public function cpuload()
     {
         include "LoginAPI.php";
@@ -80,5 +91,13 @@ class Ccr1009 extends CI_Controller
         $API->connect($ip1009, $username1009, $password1009);
         $resource = $API->comm('/system/resource/print');
         echo ($resource['0']['uptime']);
+    }
+    public function description()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip1009, $username1009, $password1009);
+        $identity = $API->comm('/system/identity/print');
+        echo ($identity['0']['name']);
     }
 }

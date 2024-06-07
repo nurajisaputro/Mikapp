@@ -84,4 +84,20 @@ class Ccr1036 extends CI_Controller
         $sysHealth = $API->comm('/system/health/print');
         echo ($sysHealth['0']['psu2-state']);
     }
+    public function uptime()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip, $username, $password);
+        $resource = $API->comm('/system/resource/print');
+        echo ($resource['0']['uptime']);
+    }
+    public function description()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip, $username, $password);
+        $identity = $API->comm('/system/identity/print');
+        echo ($identity['0']['name']);
+    }
 }

@@ -43,6 +43,13 @@ class Auth extends CI_Controller
                     'role_id' => $user['role_id'],
                 ];
                 $this->session->set_userdata($data);
+                $user_log = [
+                    'username' => $user['username'],
+                    'time' => date('Hi'),
+                    'date' => date('dmy')
+                ];
+                $this->db->insert('user_log', $user_log);
+
                 redirect('dashboard');
             } else {
                 echo "
@@ -50,7 +57,7 @@ class Auth extends CI_Controller
                     ('Password Yang Anda Masukkan Salah')
                 </script>
                 ";
-               $this->load->view('auth/login',);
+                $this->load->view('auth/login',);
             }
         } else {
             echo "

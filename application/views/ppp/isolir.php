@@ -70,7 +70,7 @@
                                         <!-- description -->
                                         <div class="col mt-4">
                                             <p class="fs-5">User Terisolir Bulan <?= str_replace('All', 'Januari - Desember', $month);
-                                            ?></p>
+                                                                                    ?></p>
                                             <p class="mt-2">Aktifkan user sesuai paket yang bulan ini</p>
                                         </div>
                                         <!-- end description -->
@@ -106,7 +106,7 @@
                         <div class="row _tabel">
                             <div class="col-sm-12">
                                 <!-- table -->
-                                <table id="DataTable" class="table table-bordered dataTable dtr-inline" aria-describedby="example1_info">
+                                <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead class="_tabel">
                                         <tr class="_thead">
                                             <th class="_count"><?= count($isolir) ?> Users</th>
@@ -147,10 +147,18 @@
                                                 </th>
                                                 <th>
                                                     <div class="row">
-                                                        <a href="<?= site_url('ppp/enableUser5M/' . $name); ?>" class="btn btn-success col m-1">5Mbps</a>
-                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name) ?>" class="btn bg-info col m-1">10Mbps</a>
-                                                        <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn bg-orange col m-1">20Mbps</a>
-                                                        <a href="<?= site_url('ppp/Disable/' .  $name); ?>" class="btn bg-danger col m-1">Disable</a>
+                                                        <a href="<?= site_url('ppp/enableUser5M/' . $name); ?>" class="btn btn-success col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
+                                                            5Mbps
+                                                        </a>
+                                                        <a href="<?= site_url('ppp/enableUser10M/' .  $name) ?>" class="btn bg-info col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
+                                                            10Mbps
+                                                        </a>
+                                                        <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn bg-orange col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
+                                                            20Mbps
+                                                        </a>
+                                                        <a href="<?= site_url('ppp/Disable/' .  $name); ?>" class="btn bg-danger col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
+                                                            Disable
+                                                        </a>
                                                     </div>
                                                 </th>
                                             </tr>

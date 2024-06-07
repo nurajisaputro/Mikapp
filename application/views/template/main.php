@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -27,7 +27,7 @@
     <!-- STYLE -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/test.css">
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/style.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/dashboard.css">
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/template/') ?>assets/dashboard.css"> -->
     <!-- Chart Js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -107,11 +107,9 @@
                                 <i class="nav-icon fa-solid fa-house"></i>
                                 <p>
                                     Dashboard
-
                                 </p>
                             </a>
                         </li>
-
 
                         <!-- INTERFACE -->
                         <li class="nav-item">
@@ -144,6 +142,8 @@
                             </ul>
                         </li>
 
+
+                        
                         <!-- PPPOE MENU -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -155,6 +155,16 @@
                             </a>
                             <!-- DROPDOWN -->
                             <ul class="nav nav-treeview" style="display: none;">
+
+                                <!-- PPP ACTIVE -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/ppp/allUsers') ?>" class="nav-link">
+                                        <i class="fa fa-users nav-icon"></i>
+                                        <p>ALL USERS</p>
+                                    </a>
+                                </li>
+                                <!-- /.PPPACTIVE -->
+
                                 <!-- PPP ACTIVE -->
                                 <li class="nav-item">
                                     <a href="<?= site_url('/ppp/users') ?>" class="nav-link">
@@ -186,6 +196,7 @@
                         </li>
                         <!-- /. PPPOE MENU -->
 
+                        <hr class="bg-white">
 
 
                         <!-- TOOLS -->
@@ -221,7 +232,6 @@
                         <!-- /. TOOLS -->
 
                         <!-- SYSTEM -->
-                        <hr>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gear"></i>
@@ -260,11 +270,13 @@
                                 <!-- /.# -->
                             </ul>
                         </li>
-                        <hr>
+                        <hr class="bg-white">
+
                     </ul>
                 </div>
             </div>
         </aside>
+
 
         <!-- Content Wrapper. Contains page content -->
         <div class="">
@@ -305,6 +317,8 @@
         <!-- JS LOAD -->
         <script src="<?= base_url('assets/template/') ?>assets/script.js"></script>
 
+        <!-- BOOTSTRAP 5 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 </body>
 

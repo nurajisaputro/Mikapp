@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="DataTable" class="table table-bordered  dataTable dtr-inline"
+                                <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline"
                                     aria-describedby="example1_info">
                                     <thead>
                                         <tr>

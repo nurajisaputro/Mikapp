@@ -1,14 +1,33 @@
+<style>
+    .device-title {
+        width: 100%;
+        background-color: #343a40;
+        border-radius: 3px;
+    }
+
+    .description{
+        margin-top: 10px;
+    }
+</style>
 <div class="content-wrapper">
     <div class="content-header">
 
         <!-- CCR1036-8G-2S+ -->
         <div class="container-fluid mt-3">
             <div class="device-title">
-                <span class="device">DEVICE NAME</span>
-                <span class="device">
-                <span id="boardname1036"></span>
-
+                <span class="device fs-5 ml-1">DEVICE NAME : </span>
+                <span class="device mt-3">
+                    <span id="boardname1036"></span>
                 </span>
+
+                <div class="description container-fluid">
+                    <div class="device-description">
+                        <span class="device fs-6">Description : </span>
+                        <span class="device fs-6">
+                            <span id="description1036"></span>
+                        </span>
+                    </div>
+                </div>
             </div>
             <!-- HEAD INFO -->
             <div class="row mt-4">
@@ -62,7 +81,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">UP-TIME</span>
                             <span class="info-box-number">
-                                <?= $uptime ?>
+                                <div id="uptime1036"></div>
                             </span>
                         </div>
                     </div>
@@ -136,12 +155,22 @@
 
         <!-- CCR1009-7G-1C-1S+ -->
         <br>
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-3">
             <div class="device-title">
-                <span class="device">DEVICE NAME</span>
+                <span class="device fs-5">DEVICE NAME : </span>
                 <span class="device">
                     <span id="boardname1009"></span>
+
                 </span>
+
+                <div class="description container-fluid">
+                    <div class="device-description">
+                        <span class="device fs-6">Description : </span>
+                        <span class="device fs-6">
+                            <span id="description1009"></span>
+                        </span>
+                    </div>
+                </div>
             </div>
             <!-- HEAD INFO -->
             <div class="row mt-4">
@@ -174,6 +203,20 @@
                 </div>
                 <!-- /.FREE MEMORY -->
 
+                <!-- USER ACTIVE -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">USER PPP ACTIVE</span>
+                            <span class="info-box-number">
+                                <div id="activeUser1009"></div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.USER ACTIVE -->
+
                 <!-- UPTIME -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
@@ -182,7 +225,7 @@
                             <span class="info-box-text">UP-TIME</span>
                             <span class="info-box-number">
                                 <div id="uptime1009">
-                                    
+
                                 </div>
                             </span>
                         </div>
@@ -255,22 +298,26 @@
 
 <script>
     setInterval("load1()", 5000)
+
     function load1() {
         // 1036
         $('#memoryLoad').load('<?= site_url('ccr1036/memory') ?>')
         $('#cpuLoad').load('<?= site_url('ccr1036/cpuload') ?>')
 
-        
+
         // 1009
         $('#cpuLoad1009').load('<?= site_url('ccr1009/cpuload') ?>')
         $('#memory1009').load('<?= site_url('ccr1009/memory') ?>')
     }
 
     setInterval("load2();", 10000)
+
     function load2() {
         // 1036
         $('#boardname1036').load('<?= site_url('ccr1036/boardname') ?>')
+        $('#description1036').load('<?= site_url('ccr1036/description') ?>')
         $('#activeUser').load('<?= site_url('ccr1036/users') ?>')
+        $('#uptime1036').load('<?= site_url('ccr1036/uptime') ?>')
         $('#cputemp1036').load('<?= site_url('ccr1036/cputemp') ?>');
         $('#bodytemp1036').load('<?= site_url('ccr1036/bodytemp') ?>')
         $('#psu11036').load('<?= site_url('ccr1036/psu1') ?>')
@@ -279,11 +326,14 @@
 
         // 1009
         $('#boardname1009').load('<?= site_url('ccr1009/boardname') ?>')
+        $('#description1009').load('<?= site_url('ccr1009/description') ?>')
+        $('#activeUser').load('<?= site_url('ccr1009/users') ?>')
         $('#uptime1009').load('<?= site_url('ccr1009/uptime') ?>')
         $('#cputemp1009').load('<?= site_url('ccr1009/cputemp') ?>')
         $('#bodytemp1009').load('<?= site_url('ccr1009/bodytemp') ?>')
         $('#psu11009').load('<?= site_url('ccr1009/psu1') ?>')
         $('#psu21009').load('<?= site_url('ccr1009/psu2') ?>')
+        console.log ('<?= site_url('ccr1009/boardname') ?>')
 
     }
 </script>

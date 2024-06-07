@@ -75,4 +75,11 @@ class Test extends CI_Controller
     ';
         $this->load->view('template/main');
     }
+
+    public function connection(){
+        $a = $this->db->query("SELECT * FROM connection WHERE 1")->result_array();
+        $login = $this->db->get('connection')->row_array();
+
+        var_dump($a);
+    }
 }

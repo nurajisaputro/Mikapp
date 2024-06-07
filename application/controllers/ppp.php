@@ -32,6 +32,26 @@ class Ppp extends CI_Controller
         $this->load->view('ppp/users', $data);
     }
 
+    public function allUsers()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip, $username, $password);
+        // $API->connect($iptest, $usertest, $passtest);
+
+        $allusers = $API->comm('/ppp/secret/print');
+        $resource = $API->comm('/system/resource/print');
+
+        $data = [
+            'systemName' => $resource['0']['board-name'],
+            'countPpp' => count($allusers),
+            'allUsers' => $allusers,
+        ];
+
+        $this->load->view('template/main');
+        $this->load->view('ppp/allUsers', $data);
+    }
+
 
     public function addUser()
     {
@@ -53,11 +73,6 @@ class Ppp extends CI_Controller
         redirect('ppp/addUser');
     }
 
-    // public function findMonth()
-    // {
-    //     // echo $month;
-    //     $this->isolir($m);
-    // }
 
     public function isolir()
     {
@@ -284,10 +299,34 @@ class Ppp extends CI_Controller
         redirect('ppp/isolir');
     }
 
+    public function markUser($id)
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $comment  = wib_time(date("m"));
+
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
+
+        $id = '*'.$id;
+        $API->comm('/ppp/secret/set', array(
+            ".id" => $id,
+            "comment" => $comment
+        ));
+
+        redirect('ppp/allUsers');
+    }
 
     public function test()
     {
-        $this->load->view('template/main');
-        $this->load->view("ppp/test",);
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect($ip, $username, $password);
+        // $API->connect($iptest, $usertest, $passtest);
+
+        $allusers = $API->comm('/ppp/secret/print');
+        $resource = $API->comm('/system/resource/print');
+
+        var_dump($allusers);
     }
 }
