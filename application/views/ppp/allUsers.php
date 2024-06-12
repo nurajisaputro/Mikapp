@@ -16,6 +16,7 @@
         justify-content: space-between;
         margin-left: 80%;
     }
+
 </style>
 
 <div class="content-wrapper">
@@ -44,13 +45,15 @@
                                 <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            <th style="width: 5%">
                                                 <?= $countPpp ?> User
                                             </th>
-                                            <th>Username</th>
-                                            <th>Paket</th>
-                                            <th>Status</th>
-                                            <th>Mark As Isolir</th>
+                                            <th style="width: 15%">Username</th>
+                                            <th style="width: 10%">Paket</th>
+                                            <th style="width: 10%">Status</th>
+                                            <th style="width: 10%">last Connected</th>
+                                            <th style="width: 10%">Reason Disconnect</th>
+                                            <th style="width: 15%">Mark As Isolir</th>
                                         </tr>
                                     </thead>
 
@@ -102,6 +105,13 @@
                                                         echo $comment;
                                                     }
                                                     ?>
+                                                </th>
+                                                <th>
+                                                    <?= $data['last-logged-out']?>
+                                                </th>
+                                                <th>
+                                                <?= $data['last-disconnect-reason']?>
+
                                                 </th>
                                                 <th>
                                                     <a class="btn btn-warning" href="<?= site_url('ppp/markUser/' . $id); ?>" onclick="return confirm('Tandai User <?= $name ?> Sebagai Belum Bayar?')">

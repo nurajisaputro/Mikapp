@@ -36,8 +36,8 @@ class Ppp extends CI_Controller
     {
         include "LoginAPI.php";
         $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
 
         $allusers = $API->comm('/ppp/secret/print');
         $resource = $API->comm('/system/resource/print');
@@ -46,6 +46,8 @@ class Ppp extends CI_Controller
             'systemName' => $resource['0']['board-name'],
             'countPpp' => count($allusers),
             'allUsers' => $allusers,
+            'lastDisconnect' => $allusers[0]['last-logged-out'],
+            'reasonDisconnect' => $allusers[0]['last-disconnect-reason'],
         ];
 
         $this->load->view('template/main');
@@ -305,10 +307,10 @@ class Ppp extends CI_Controller
         $API = new RouterosAPI();
         $comment  = wib_time(date("m"));
 
-        // $API->connect($ip, $username, $password);
-        $API->connect($iptest, $usertest, $passtest);
+        $API->connect($ip, $username, $password);
+        // $API->connect($iptest, $usertest, $passtest);
 
-        $id = '*'.$id;
+        $id = '*' . $id;
         $API->comm('/ppp/secret/set', array(
             ".id" => $id,
             "comment" => $comment
@@ -328,5 +330,68 @@ class Ppp extends CI_Controller
         $resource = $API->comm('/system/resource/print');
 
         var_dump($allusers);
+    }
+
+    public function isolirAllUserThisMonth($month)
+    {
+        $API = new RouterosAPI();
+        $API->connect(iptest(), usertest(), passtest());
+        $now = wib_time(date('m'));
+
+        if ($month == $now) {
+            // Get ID
+            $getId = $API->comm(
+                '/ppp/secret/print',
+                array(
+                    '?comment' => $month
+                )
+            );
+
+            // LOOPING SET PROFILE
+            foreach ($getId as $data) {
+                
+                $i = count($getId);
+                $id = $data['.id'];
+                if ($i > 0) {
+                    while ($i > 0) {
+                        $API->comm('/ppp/secret/set', array(
+                            ".id" => $id,
+                            "profile" => 'test',
+                            "comment" => $month
+                        ));
+
+                        // echo $getId['0']['.id'];
+                        $i--;
+                    }
+                }
+            }
+
+            // SET PROFILE
+            // $API->comm('/ppp/secret/set', array(
+            //     ".id" => $id,
+            //     "profile" => $newProfile,
+            //     "comment" => $comment
+            // ));
+
+            // REMOVE ACTIVE
+            // $removeId = $API->comm('/ppp/active/print', array(
+            //     '?name' => $name
+            // ));
+            // $removeId = $removeId["0"]['.id'];
+
+            // $API->comm('/ppp/active/remove', array(
+            //     ".id" => $removeId
+            // ));
+            // var_dump($getId);
+
+            // foreach($getId as $data){
+            //     echo $data['.id'];
+            //     echo "</br>";
+            //     echo $data['name'];
+
+            // }
+        } else {
+            echo "else";
+        }
     }
 }

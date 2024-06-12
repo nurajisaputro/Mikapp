@@ -32,54 +32,54 @@ class Test extends CI_Controller
         echo $results[$results];
     }
 
-    public function red()
+    public function connection()
     {
-        $icon = 'fa-temperature-three-quarters';
-        $green = 'info-box-icon bg-success elevation-1';
-        $red = 'info-box-icon bg-red elevation-1';
-        $a = 1;
-        $q = 2;
-        
-        if($a === 12){
-            $hasil = $green;
-        }else{
-            $hasil = $red;
-        }
-
-
-
-
-
-        echo
-        '
-            <div class="content-wrapper mt-5">
-                <div class="content-header">
-                    <div class="col-12 col-sm-6 col-md-3">
-                        <div class="info-box">' .
-
-
-        '<span class="' . $hasil . '"><i class="fa-solid "></i></span>';
-
-
-        echo '
-        <div class="info-box-content">
-        <span class="info-box-text">CPU TEMPERATURE</span>
-        <span class="info-box-number">
-        <div id="cputemp1009"></div>
-        </span>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-    ';
-        $this->load->view('template/main');
-    }
-
-    public function connection(){
         $a = $this->db->query("SELECT * FROM connection WHERE 1")->result_array();
         $login = $this->db->get('connection')->row_array();
 
         var_dump($a);
+    }
+
+    public function test2116()
+    {
+        $this->load->view('test/test');
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect('10.10.101.1', 'nuraji', 'nurajisaputro123');
+        $resource = $API->comm('/system/health/print');
+        // echo ($resource['0']['board-name']);
+        var_dump($resource);
+    }
+
+    public function index()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        $API->connect(ip(), user(), pass());
+    }
+
+    public function allUsers()
+    {
+        include "LoginAPI.php";
+        $API = new RouterosAPI();
+        // $API->connect($ip, $username, $password);
+        $API->connect($iptest, $usertest, $passtest);
+
+        $allusers = $API->comm('/ppp/secret/print');
+        $resource = $API->comm('/system/resource/print');
+
+        $data = [
+            'systemName' => $resource['0']['board-name'],
+            'countPpp' => count($allusers),
+            'allUsers' => $allusers,
+            'last' => $allusers[0]['last-logged-out'],
+            'last-disconnect' => $allusers[0]['last-disconnect-reason']
+        ];
+
+        // echo $allusers['1'];
+        var_dump($data);
+
+        // $this->load->view('template/main');
+        // $this->load->view('test/test');
     }
 }

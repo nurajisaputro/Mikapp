@@ -77,26 +77,29 @@
 
                                         <!-- form input -->
                                         <div class="col text-center">
-                                            <label class="button fs-5">Pilih Bulan (<?= date('Y') ?>)</label>
-                                            <select name="bulan" class="btn bg-secondary button">
-                                                <option value="All">Semua</option>
-                                                <option value="januari">Januari</option>
-                                                <option value="februari">February</option>
-                                                <option value="maret">Maret</option>
-                                                <option value="april">April</option>
-                                                <option value="mei">Mei</option>
-                                                <option value="juni">Juni</option>
-                                                <option value="juli">Juli</option>
-                                                <option value="agustus">Agustus</option>
-                                                <option value="september">September</option>
-                                                <option value="oktober">October</option>
-                                                <option value="november">November</option>
-                                                <option value="desember">Desember</option>
-                                            </select>
-                                            <button type="submit" class="btn btn-success ml-2 button">Cari</button>
+                                            <div>
+                                                <label class="button fs-5">Pilih Bulan (<?= date('Y') ?>)</label>
+                                                <select name="bulan" class="btn bg-secondary button">
+                                                    <option value="All">Semua</option>
+                                                    <option value="januari">Januari</option>
+                                                    <option value="februari">February</option>
+                                                    <option value="maret">Maret</option>
+                                                    <option value="april">April</option>
+                                                    <option value="mei">Mei</option>
+                                                    <option value="juni">Juni</option>
+                                                    <option value="juli">Juli</option>
+                                                    <option value="agustus">Agustus</option>
+                                                    <option value="september">September</option>
+                                                    <option value="oktober">October</option>
+                                                    <option value="november">November</option>
+                                                    <option value="desember">Desember</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-success ml-2 button">Cari</button>
+                                            </div>
+                                            <!-- end form input -->
                                         </div>
-                                        <!-- end form input -->
                                     </div>
+                                </div>
                             </form>
                         </div>
                         <!-- end form -->
@@ -109,7 +112,7 @@
                                 <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead class="_tabel">
                                         <tr class="_thead">
-                                            <th class="_count"><?= count($isolir) ?> Users</th>
+                                            <th class="_count width: 5%"><?= count($isolir) ?> Users</th>
                                             <!-- <th>Id</th> -->
                                             <th>Username</th>
                                             <th>Profile</th>
@@ -121,7 +124,7 @@
                                     <tbody class="_tabel">
                                         <?php
                                         $i = 1;
-
+                                        $newMonth = $month;
                                         foreach ($isolir as $data) {
                                         ?>
                                             <tr>
@@ -156,15 +159,27 @@
                                                         <a href="<?= site_url('ppp/enableUser20M/' .  $name); ?>" class="btn bg-orange col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
                                                             20Mbps
                                                         </a>
-                                                        <a href="<?= site_url('ppp/Disable/' .  $name); ?>" class="btn bg-danger col m-1" onclick="return confirm('Apakah Anda Yakin Mengaktifkan user <?= $name ?>')">
-                                                            Disable
+                                                        <a href="<?= site_url('ppp/Disable/' .  $name); ?>" class="btn bg-danger col m-1" onclick="return confirm('Apakah Anda Yakin Mengisolir user <?= $name ?>')">
+                                                            Isolir
                                                         </a>
                                                     </div>
                                                 </th>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
-                                </table>
+                                    </table>
+                                    <div class="container-fluid">
+                                        <div class="row  justify-content-end">
+                                            <div class="col-4 justify-content-start">
+                                                <a href="#" class=""></a>
+                                            </div>
+                                            <div class="col-4 row justify-content-end">
+                                                <div class="col-4 justify-content-end">
+                                                    <!-- <a href="<?= site_url('ppp/isolirAllUserThisMonth/'. $month)?>" type="submit" class="btn btn-danger">Isolir Semua</a> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <!-- end table -->
                             </div>
                         </div>

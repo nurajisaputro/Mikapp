@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jan 2024 pada 12.12
+-- Waktu pembuatan: 07 Jun 2024 pada 09.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -20,6 +20,65 @@ SET time_zone = "+00:00";
 --
 -- Database: `mikapp_login`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `connection`
+--
+
+CREATE TABLE `connection` (
+  `id` int(11) NOT NULL,
+  `router` varchar(50) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `connection`
+--
+
+INSERT INTO `connection` (`id`, `router`, `description`, `ip`, `username`, `password`) VALUES
+(1, 'ccr1036', 'Dist#1', '192.168.3.1', 'a', 'a'),
+(2, 'ccr1009', 'Router Gateway', '10.10.10.1', 'a', 'a');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `superadmin_menu`
+--
+
+CREATE TABLE `superadmin_menu` (
+  `id` int(11) NOT NULL,
+  `menu` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `superadmin_menu`
+--
+
+INSERT INTO `superadmin_menu` (`id`, `menu`) VALUES
+(1, 'INTERFACE'),
+(2, 'PPPOE'),
+(3, 'TOOLS'),
+(4, 'SYSTEM');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `superadmin_sub_menu`
+--
+
+CREATE TABLE `superadmin_sub_menu` (
+  `id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `url` varchar(128) NOT NULL,
+  `icon` varchar(128) NOT NULL,
+  `is_active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,8 +101,40 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `role_id`, `is_active`, `data_created`) VALUES
-(7, '', 'nurajisaputro', '$2y$10$MjRaaiL7tPNPtnWMqv81x.X.2VTiuRUAZSnDyjSr8pgp9K.C9esYe', 1, 1, 1704872455),
-(20, '', 'nuraji', '$2y$10$QLz8Ic3KBCwHwmS99q8VTu5Cno7Bp2/1KB.0M4Y7R1yvZ5GGUKV1O', 1, 1, 110124);
+(22, 'Saputro', 'saputro', '$2y$10$iCprF48vOr6zPYJVrBAVauATw2DnUyqjEWJSwTpVGM00OZfe7k1YW', 1, 1, 280224),
+(23, 'Nur Aji', 'nuraji', '$2y$10$eQJAG1Egosabf6KWUMTCLuLjIydt5RAV0O/8M0Nu8kQ9NuhJ/L/zS', 1, 1, 30324),
+(25, 'Kemuning', 'kemuning', '$2y$10$1ZxVhaVW7BWr9W5ARE6QzOPd3vYvdNVsmxomLjRsHNIVJKnz.256K', 1, 1, 160524);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_log`
+--
+
+CREATE TABLE `user_log` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `date` int(11) NOT NULL,
+  `time` int(30) NOT NULL,
+  `location` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `user_log`
+--
+
+INSERT INTO `user_log` (`id`, `username`, `date`, `time`, `location`) VALUES
+(25, 'nuraji', 290524, 1345, ''),
+(26, 'nuraji', 290524, 2158, ''),
+(27, 'nuraji', 300524, 1223, ''),
+(28, 'nuraji', 300524, 2311, ''),
+(29, 'nuraji', 310524, 1318, ''),
+(30, 'nuraji', 40624, 912, ''),
+(31, 'nuraji', 40624, 915, ''),
+(32, 'nuraji', 40624, 945, ''),
+(33, 'nuraji', 50624, 1256, ''),
+(34, 'nuraji', 70624, 1050, ''),
+(35, 'nuraji', 70624, 1138, '');
 
 -- --------------------------------------------------------
 
@@ -70,9 +161,33 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 --
+-- Indeks untuk tabel `connection`
+--
+ALTER TABLE `connection`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `superadmin_menu`
+--
+ALTER TABLE `superadmin_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `superadmin_sub_menu`
+--
+ALTER TABLE `superadmin_sub_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `user_log`
+--
+ALTER TABLE `user_log`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -86,10 +201,34 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `connection`
+--
+ALTER TABLE `connection`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `superadmin_menu`
+--
+ALTER TABLE `superadmin_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `superadmin_sub_menu`
+--
+ALTER TABLE `superadmin_sub_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_log`
+--
+ALTER TABLE `user_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`

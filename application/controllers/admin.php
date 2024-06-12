@@ -11,6 +11,27 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        echo "TESTING";
+        // $this->load->view('template/main');
+        $this->load->view('super_admin/super_admin');
+        $test = $this->db->get('superadmin_sub_menu')->row_array();
+        var_dump($test);
+    }
+
+
+    public function log()
+    {
+        $this->load->view('template/main');
+        $this->load->view('super_admin/log');
+    }
+
+    public function userMgmt()
+    {
+        $this->load->view('template/main');
+        $this->load->view('super_admin/user_mgmt');
+    }
+
+    public function deleteUser()
+    {
+        redirect('admin/userMgmt');
     }
 }

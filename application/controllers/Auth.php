@@ -33,6 +33,14 @@ class Auth extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
+        // GET IP
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, "http://httpbin.org/ip");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        $result = json_decode($output, true);
+        $location = $result['origin'];
 
         $user = $this->db->get_where('user', ['username' => $username])->row_array();
 
@@ -46,7 +54,8 @@ class Auth extends CI_Controller
                 $user_log = [
                     'username' => $user['username'],
                     'time' => date('Hi'),
-                    'date' => date('dmy')
+                    'date' => date('dmy'),
+                    'location' => $location
                 ];
                 $this->db->insert('user_log', $user_log);
 

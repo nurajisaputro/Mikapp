@@ -10,16 +10,10 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- DataTables -->
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/fontawesome-free/css/all.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url('assets/template/') ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
@@ -75,7 +69,7 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
+                <!-- USER NAME -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <i class="fa-solid fa-user-tie mt-2"></i>
@@ -90,13 +84,15 @@
                         </a>
                     </div>
                 </div>
+                <!-- END USER NAME -->
 
-                <!-- SidebarSearch Form -->
+                <!-- TITLE -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
                         <p class="form-control form-control-sidebar">MENU</p>
                     </div>
                 </div>
+                <!-- END TITLE -->
 
                 <!-- Sidebar Menu -->
                 <div class="mt-2 d-flex">
@@ -143,7 +139,7 @@
                         </li>
 
 
-                        
+
                         <!-- PPPOE MENU -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -212,7 +208,7 @@
                             <ul class="nav nav-treeview" style="display: none;">
                                 <!-- Ping -->
                                 <li class="nav-item">
-                                    <a href="<?= site_url('/ping/ping') ?>" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="fa-solid fa-network-wired nav-icon"></i>
                                         <p>Ping</p>
                                     </a>
@@ -230,50 +226,60 @@
                             </ul>
                         </li>
                         <!-- /. TOOLS -->
-
-                        <!-- SYSTEM -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-gear"></i>
-                                <p>
-                                    SYSTEM
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <!-- DROPDOWN -->
-                            <ul class="nav nav-treeview" style="display: none;">
-                                <!-- App User -->
-                                <li class="nav-item">
-                                    <a href="<?= site_url('/appUser/users') ?>" class="nav-link">
-                                        <i class="fa-solid fa-network-wired nav-icon"></i>
-                                        <p>APP USERS</p>
-                                    </a>
-                                </li>
-                                <!-- /.App User -->
-
-                                <!-- # -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fa-solid fa-scroll nav-icon"></i>
-                                        <p>#</p>
-                                    </a>
-                                </li>
-                                <!-- /.# -->
-
-                                <!-- # -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fa-solid fa-scroll nav-icon"></i>
-                                        <p>#</p>
-                                    </a>
-                                </li>
-                                <!-- /.# -->
-                            </ul>
-                        </li>
                         <hr class="bg-white">
+
+
+                        <?php
+                        $role_id = $this->session->userdata('role_id');
+                        $queryMenu = "SELECT `superadmin_menu` . `id`, `menu` FROM `superadmin_menu` JOIN `user_access_menu` ON `superadmin_menu` . `id` = `user_access_menu` . `menu_id` WHERE           `user_access_menu` . `role_id` = $role_id ORDER BY `user_access_menu` . `menu_id` ASC
+                        ";
+
+                        $menu = $this->db->query($queryMenu)->result_array();
+                        ?>
+
+
+                        <!-- SUPER ADMIN MENU -->
+                        <?php foreach ($menu as $data) : ?>
+
+                            <div class="nav-item">
+                                <!-- LOOPING MENU SUPER ADMIN -->
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa-solid fa-gear"></i>
+                                    <p>
+                                        <?= $data['menu'] ?>
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <!-- END LOOPING MENU SUPER ADMIN -->
+
+
+                                <!-- LOOPING SUB MENU SUPER ADMIN -->
+                                <?php
+                                $menuId = $data['id'];
+                                $querySubMenu = "SELECT * FROM `superadmin_sub_menu` WHERE `menu_id` = $menuId AND `is_active` = 1";
+                                $subMenu = $this->db->query($querySubMenu)->result_array();
+
+                                ?>
+
+                                <?php foreach ($subMenu as $sm) : ?>
+                                    <ul class="nav nav-treeview" style="display: none;">
+                                        <!-- App User -->
+                                        <li class="nav-item">
+                                            <a href="<?= base_url($sm['url']) ?>" class="nav-link">
+                                                <i class="<?= $sm['icon']?>"></i>
+                                                <p><?= $sm['title']?></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                <?php endforeach; ?>
+                                <!-- END LOOPING SUB MENU SUPER ADMIN -->
+                            </div>
+                        <?php endforeach; ?>
+                        <!-- END SUPER ADMIN MENU -->
 
                     </ul>
                 </div>
+                <!-- End Side Bar -->
             </div>
         </aside>
 
@@ -284,7 +290,7 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2024 NUR AJI.</strong>
                 <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 1.2
+                    <b>Version</b> 1.2.1
                 </div>
             </footer>
         </div>
