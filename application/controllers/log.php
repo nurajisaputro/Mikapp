@@ -11,8 +11,11 @@ class Log extends CI_Controller
     
     public function log()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
 
         $array = $API->comm('/log/print');
@@ -29,9 +32,13 @@ class Log extends CI_Controller
 
     public function pppLog()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
         $pppLog = $API->comm(
             '/log/print',

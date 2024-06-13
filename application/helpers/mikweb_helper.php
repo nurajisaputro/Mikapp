@@ -1,58 +1,26 @@
 <?php
-function ip1(){
-    $ip = "192.168.1.1";
-    return $ip;
-}
-function user1(){
-    $user = "admin";
-    return $user;
-}
-function pass1(){
-    $pass = "";
-    return $pass;
-}
+function login()
+{
 
-function ip2(){
-    $ip = "192.168.2.1";
-    return $ip;
-}
-function user2(){
-    $user = "admin";
-    return $user;
-}
-function pass2(){
-    $pass = "";
-    return $pass;
-}
+    $data = [
+        // IP MIKROTIK 1036
+        'ip' => '103.189.249.90',
+        'username' => 'admin',
+        'password' => '',
 
+        // IP MIKROTIK 1009
+        'ip1009' => '10.10.102.2',
+        'username1009' => 'nuraji',
+        'password1009' => 'nuraji12',
 
-function ip3(){
-    $ip = "192.168.3.1";
-    return $ip;
-}
-function user3(){
-    $user = "admin";
-    return $user;
-}
-function pass3(){
-    $pass = "";
-    return $pass;
-}
+        // IP MIKROTIK 2116
+        'ip2116' => '103.189.249.90',
+        'username2116' => 'nuraji',
+        'password2116' => 'nuraji'
+    ];
 
-
-function iptest(){
-    $ip = "103.189.249.90";
-    return $ip;
+    return $data;
 }
-function usertest(){
-    $user = "admin";
-    return $user;
-}
-function passtest(){
-    $pass = "";
-    return $pass;
-}
-
 
 function FormatBytes($Tx, $Rx = null)
 {

@@ -12,9 +12,13 @@ class Traffic extends CI_Controller
     // SFP PLUS 1
     public function SFP1()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
         $resource = $API->comm('/system/resource/print');
         $interface = $API->comm('/interface/ethernet/print');
@@ -32,9 +36,13 @@ class Traffic extends CI_Controller
     // SFP PLUS 2
     public function SFP2()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
 
         $resource = $API->comm('/system/resource/print');
@@ -77,9 +85,13 @@ class Traffic extends CI_Controller
     // ETHER 2
     public function TrafficETH2()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
 
         $resource = $API->comm('/system/resource/print');
@@ -123,9 +135,13 @@ class Traffic extends CI_Controller
     // Traffic SFP 1 
     public function trafficSFP1()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
         $GetTrafficSfp1 = $API->comm(
             '/interface/monitor-traffic',
@@ -167,9 +183,13 @@ class Traffic extends CI_Controller
     // TRAFFIC SFP 2
     public function trafficSFP2()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+        
 
         $interface = $API->comm('/interface/ethernet/print');
         $GetTrafficSfp1 = $API->comm(

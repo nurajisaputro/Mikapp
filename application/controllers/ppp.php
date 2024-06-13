@@ -12,10 +12,12 @@ class Ppp extends CI_Controller
 
     public function users()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
 
         $userPpp = $API->comm('/ppp/active/print');
         $resource = $API->comm('/system/resource/print');
@@ -34,10 +36,12 @@ class Ppp extends CI_Controller
 
     public function allUsers()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
-        // $API->connect($ip, $username, $password);
-        $API->connect($iptest, $usertest, $passtest);
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $API->connect($ip, $username, $password);
 
         $allusers = $API->comm('/ppp/secret/print');
         $resource = $API->comm('/system/resource/print');
@@ -57,9 +61,13 @@ class Ppp extends CI_Controller
 
     public function addUser()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
+
         $post = $this->input->post(null, true);
         $service = "pppoe";
 
@@ -78,10 +86,12 @@ class Ppp extends CI_Controller
 
     public function isolir()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
         $profile = "ProfileDisconnect";
 
         $getMonth = $this->input->post('bulan');
@@ -114,16 +124,17 @@ class Ppp extends CI_Controller
     // ENABLE USER 5M
     public function enableUser5M($name)
     {
+        // BASE API
+        $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $API->connect($ip, $username, $password);
+
         // GET USER FROM LOGIN
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
-        // BASE API
-        include "LoginAPI.php";
-        $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
-
-        // API test
-        // $API->connect($iptest, $usertest, $passtest);
 
         // USER FROM LOGIN
         $who = $data['user']['name'];
@@ -168,10 +179,12 @@ class Ppp extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
 
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
         $who = $data['user']['name'];
@@ -211,11 +224,13 @@ class Ppp extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
-        include "LoginAPI.php";
-        $API = new RouterosAPI();
-        $API->connect($ip, $username, $password);
 
-        // $API->connect($iptest, $usertest, $passtest);
+        $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $API->connect($ip, $username, $password);
 
         $now = date('d/m | H:i');
         $who = $data['user']['name'];
@@ -257,11 +272,13 @@ class Ppp extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
-        include "LoginAPI.php";
+        
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-
-        // $API->connect($iptest, $usertest, $passtest);
 
         $now = date('d/m | H:i');
         $who = $data['user']['name'];
@@ -303,13 +320,14 @@ class Ppp extends CI_Controller
 
     public function markUser($id)
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
-        $comment  = wib_time(date("m"));
-
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
-
+        
+        $comment  = wib_time(date("m"));
         $id = '*' . $id;
         $API->comm('/ppp/secret/set', array(
             ".id" => $id,
@@ -321,10 +339,12 @@ class Ppp extends CI_Controller
 
     public function test()
     {
-        include "LoginAPI.php";
         $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
         $API->connect($ip, $username, $password);
-        // $API->connect($iptest, $usertest, $passtest);
 
         $allusers = $API->comm('/ppp/secret/print');
         $resource = $API->comm('/system/resource/print');
@@ -335,9 +355,13 @@ class Ppp extends CI_Controller
     public function isolirAllUserThisMonth($month)
     {
         $API = new RouterosAPI();
-        $API->connect(iptest(), usertest(), passtest());
-        $now = wib_time(date('m'));
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $API->connect($ip, $username, $password);
 
+        $now = wib_time(date('m'));
         if ($month == $now) {
             // Get ID
             $getId = $API->comm(
