@@ -272,7 +272,7 @@ class Ppp extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' =>
         $this->session->userdata('username')])->row_array();
-        
+
         $API = new RouterosAPI();
         $login = login();
         $ip = $login['ip'];
@@ -326,7 +326,7 @@ class Ppp extends CI_Controller
         $username = $login['username'];
         $password = $login['password'];
         $API->connect($ip, $username, $password);
-        
+
         $comment  = wib_time(date("m"));
         $id = '*' . $id;
         $API->comm('/ppp/secret/set', array(
@@ -335,6 +335,31 @@ class Ppp extends CI_Controller
         ));
 
         redirect('ppp/allUsers');
+    }
+
+    public function deleteMark($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' =>
+        $this->session->userdata('username')])->row_array();
+        $API = new RouterosAPI();
+
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $API->connect($ip, $username, $password);
+
+        $now = date('d/m | H:i');
+        $who = $data['user']['name'];
+        $comment = "Lunas | " . $now . " - $who";
+
+        $id = '*' . $id;
+        $API->comm('/ppp/secret/set', array(
+            ".id" => $id,
+            "comment" => $comment
+        ));
+
+        redirect('ppp/dataIsolir');
     }
 
     public function test()
@@ -371,51 +396,70 @@ class Ppp extends CI_Controller
                 )
             );
 
-            // LOOPING SET PROFILE
+            // LOOPING
             foreach ($getId as $data) {
-                
                 $i = count($getId);
                 $id = $data['.id'];
+
                 if ($i > 0) {
                     while ($i > 0) {
+                        // SET PROFILE
                         $API->comm('/ppp/secret/set', array(
                             ".id" => $id,
-                            "profile" => 'test',
+                            "profile" => 'isolir',
                             "comment" => $month
                         ));
 
-                        // echo $getId['0']['.id'];
+                        // REMOVE ACTIVE
+                        // GET REMOVE ID
+                        $removeId = $API->comm('/ppp/active/print', array(
+                            '?name' => $data['name'],
+                        ));
+                        $removeId = $removeId["0"]['.id'];
+                        echo $removeId;
+
+                        // REMOVE ACTIVE
+                        $API->comm('/ppp/active/remove', array(
+                            ".id" => $removeId
+                        ));
+
                         $i--;
+                        sleep(0.1);
                     }
                 }
             }
-
-            // SET PROFILE
-            // $API->comm('/ppp/secret/set', array(
-            //     ".id" => $id,
-            //     "profile" => $newProfile,
-            //     "comment" => $comment
-            // ));
-
-            // REMOVE ACTIVE
-            // $removeId = $API->comm('/ppp/active/print', array(
-            //     '?name' => $name
-            // ));
-            // $removeId = $removeId["0"]['.id'];
-
-            // $API->comm('/ppp/active/remove', array(
-            //     ".id" => $removeId
-            // ));
-            // var_dump($getId);
-
-            // foreach($getId as $data){
-            //     echo $data['.id'];
-            //     echo "</br>";
-            //     echo $data['name'];
-
-            // }
+            $this->load->view('status_code/202');
+            // echo "<a href='ppp/dataIsolir'>Back To Isolir Menu<a>";
         } else {
-            echo "else";
+            // redirect('ppp/isolir');
         }
+    }
+
+
+    public function dataIsolir()
+    {
+        $API = new RouterosAPI;
+        $login = login();
+        $ip = $login['ip'];
+        $username = $login['username'];
+        $password = $login['password'];
+        $month = wib_time(date('m'));
+
+
+        $API->connect($ip, $username, $password);
+
+        $result = $API->comm('/ppp/secret/print', [
+            '?comment' => $month
+        ]);
+
+        if (count($result) < 1) {
+            echo "TIDAK ADA DATA";
+        } else {
+            $data = [
+                'result' => $result,
+            ];
+        }
+        $this->load->view('template/main');
+        $this->load->view('ppp/daftarIsolir', $data);
     }
 }

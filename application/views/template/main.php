@@ -163,6 +163,15 @@
 
                                 <!-- PPP ACTIVE -->
                                 <li class="nav-item">
+                                    <a href="<?= site_url('/ppp/dataIsolir') ?>" class="nav-link">
+                                        <i class="fa fa-users nav-icon"></i>
+                                        <p>PROSES ISOLIR</p>
+                                    </a>
+                                </li>
+                                <!-- /.PPPACTIVE -->
+
+                                <!-- PPP ACTIVE -->
+                                <li class="nav-item">
                                     <a href="<?= site_url('/ppp/users') ?>" class="nav-link">
                                         <i class="fa fa-users nav-icon"></i>
                                         <p>PPPOE ACTIVE</p>
