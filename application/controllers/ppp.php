@@ -431,7 +431,7 @@ class Ppp extends CI_Controller
             $this->load->view('status_code/202');
             // echo "<a href='ppp/dataIsolir'>Back To Isolir Menu<a>";
         } else {
-            // redirect('ppp/isolir');
+            echo "ERROR";
         }
     }
 
@@ -454,6 +454,9 @@ class Ppp extends CI_Controller
 
         if (count($result) < 1) {
             echo "TIDAK ADA DATA";
+            $data = [
+                'result' => $result,
+            ];
         } else {
             $data = [
                 'result' => $result,

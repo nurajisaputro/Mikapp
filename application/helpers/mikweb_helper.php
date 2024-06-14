@@ -4,9 +4,16 @@ function login()
 
     $data = [
         // IP MIKROTIK 1036
+
         'ip' => '192.168.3.1',
         'username' => 'nurajisaputro',
         'password' => 'nurajisaputro123',
+
+        // IP TEST
+
+        // 'ip' => '103.189.249.90',
+        // 'username' => 'admin',
+        // 'password' => '',
 
         // IP MIKROTIK 1009
         'ip1009' => '10.10.102.2',
