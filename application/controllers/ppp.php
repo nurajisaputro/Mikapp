@@ -13,21 +13,34 @@ class Ppp extends CI_Controller
     public function users()
     {
         $API = new RouterosAPI();
+        $API2 = new RouterosAPI();
         $login = login();
         $ip = $login['ip'];
         $username = $login['username'];
         $password = $login['password'];
         $API->connect($ip, $username, $password);
 
-        $userPpp = $API->comm('/ppp/active/print');
         $resource = $API->comm('/system/resource/print');
         $resource = json_encode($resource);
         $resource = json_decode($resource, true);
+        
+        $userPpp = $API->comm('/ppp/active/print');
+
+
+        $ip2 = $login['ip1009'];
+        $username2 = $login['username1009'];
+        $password2 = $login['password1009'];
+        $API2->connect($ip2, $username2, $password2);
+        
+        $userPpp2 = $API2->comm('/ppp/active/print');
+        
+        $count = count($userPpp) + count($userPpp2);
 
         $data = [
             'systemName' => $resource['0']['board-name'],
-            'countPpp' => count($userPpp),
+            'countPpp' => $count,
             'activePpp' => $userPpp,
+            'activePpp2' => $userPpp2,
         ];
 
         $this->load->view('template/main');
@@ -386,6 +399,7 @@ class Ppp extends CI_Controller
         $password = $login['password'];
         $API->connect($ip, $username, $password);
 
+        $profile = "ProfileDisconnect";
         $now = wib_time(date('m'));
         if ($month == $now) {
             // Get ID
@@ -406,7 +420,7 @@ class Ppp extends CI_Controller
                         // SET PROFILE
                         $API->comm('/ppp/secret/set', array(
                             ".id" => $id,
-                            "profile" => 'isolir',
+                            "profile" => $profile,
                             "comment" => $month
                         ));
 

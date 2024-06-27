@@ -51,7 +51,7 @@ class Traffic extends CI_Controller
         $GetTrafficSfp2 = $API->comm(
             '/interface/monitor-traffic',
             array(
-                'interface' => 'sfp-sfpplus2 - Uplink OLT',
+                'interface' => 'sfp-sfpplus2',
                 'once' => '',
             )
         );
@@ -146,7 +146,7 @@ class Traffic extends CI_Controller
         $GetTrafficSfp1 = $API->comm(
             '/interface/monitor-traffic',
             array(
-                'interface' => 'sfp-sfpplus1-From1009',
+                'interface' => 'sfp-sfpplus1',
                 'once' => '',
             )
         );
@@ -172,6 +172,7 @@ class Traffic extends CI_Controller
             'rxTrafficSFP1' => $Rxsfp1,
             'txTrafficSFP1' => $Txsfp1,
             'chartValueRx' => $chartValueRx,
+            'chartValueTx' => $chartValueTx,
         ];
 
         $this->load->view('template/main');

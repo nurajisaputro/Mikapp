@@ -78,6 +78,28 @@
                                                     <?= $data['uptime'] ?>
                                             </tr>
                                         <?php } ?>
+                                        <?php
+                                        foreach (array_reverse($activePpp2) as $data2) {
+                                            // NAME USER
+                                            $name = str_replace('@backbone.net', '', $data2['name']);
+                                            ?>
+                                            <tr>
+                                                <th>
+                                                    <?= $data2['.id'] ?>
+                                                </th>
+                                                <th>
+                                                    <?= $name ?>
+                                                </th>
+                                                <th>
+                                                    <?= $data2['address'] ?>
+                                                </th>
+                                                <th>
+                                                    <?= $data2['caller-id'] ?>
+                                                </th>
+                                                <th>
+                                                    <?= $data2['uptime'] ?>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
