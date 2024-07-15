@@ -131,6 +131,7 @@
                                                 <?php
                                                 $name = str_replace('@backbone.net', '', $data['name']);
                                                 $a = $data['name'];
+                                                $R1 = "ProfileD"
                                                 ?>
 
                                                 <th>

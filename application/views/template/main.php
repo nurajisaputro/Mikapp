@@ -164,7 +164,7 @@
                                 <!-- PPP ACTIVE -->
                                 <li class="nav-item">
                                     <a href="<?= site_url('/ppp/dataIsolir') ?>" class="nav-link">
-                                        <i class="fa fa-users nav-icon"></i>
+                                        <i class="fa-solid fa-user-xmark nav-icon"></i>
                                         <p>PROSES ISOLIR</p>
                                     </a>
                                 </li>
@@ -203,6 +203,37 @@
 
                         <hr class="bg-white">
 
+                        <!-- ISOLIR MENU -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    USER TERISOLIR
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <!-- DROPDOWN -->
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <!-- PPP ACTIVE -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/ppp/dataIsolir') ?>" class="nav-link">
+                                        <i class="fa-solid fa-user-xmark nav-icon"></i>
+                                        <p>USERS</p>
+                                    </a>
+                                </li>
+                                <!-- /.PPPACTIVE -->
+
+                                <!--ISOLIR PPPOE -->
+                                <li class="nav-item">
+                                    <a href="<?= site_url('/ppp/isolir') ?>" class="nav-link">
+                                        <i class="fa-solid fa-link-slash nav-icon"></i>
+                                        <p>ISOLIR PPPOE</p>
+                                    </a>
+                                </li>
+                                <!-- /.ISOLIR PPPOE -->
+                            </ul>
+                        </li>
+                        <!-- /. ISOLIR MENU -->
 
                         <!-- TOOLS -->
                         <li class="nav-item">
@@ -275,8 +306,8 @@
                                         <!-- App User -->
                                         <li class="nav-item">
                                             <a href="<?= base_url($sm['url']) ?>" class="nav-link">
-                                                <i class="<?= $sm['icon']?>"></i>
-                                                <p><?= $sm['title']?></p>
+                                                <i class="<?= $sm['icon'] ?>"></i>
+                                                <p><?= $sm['title'] ?></p>
                                             </a>
                                         </li>
                                     </ul>
@@ -299,7 +330,7 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2024 NUR AJI.</strong>
                 <div class="float-right d-none d-sm-inline-block">
-                    <?= version()?>
+                    <?= version() ?>
                 </div>
             </footer>
         </div>

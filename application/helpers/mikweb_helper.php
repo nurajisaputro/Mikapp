@@ -10,7 +10,7 @@ function login()
         'password' => 'nurajisaputro123',
 
         // IP TEST
-        
+
         // 'ip' => '103.189.249.90',
         // 'username' => 'admin',
         // 'password' => '',
@@ -32,7 +32,14 @@ function login()
         // IP MIKROTIK 2116
         'ip2116' => '10.10.101.1',
         'username2116' => 'nuraji',
-        'password2116' => 'nurajisaputro123'
+        'password2116' => 'nurajisaputro123',
+
+
+
+        // IP MIKROTIK 2116
+        'iptest' => '10.10.99.2',
+        'usernametest' => 'nuraji',
+        'passwordtest' => 'nuraji12'
     ];
 
     return $data;
@@ -52,7 +59,8 @@ function FormatBytes($Tx, $Rx = null)
     return round($Tx) . ' ' . $satuan[$i];
 }
 
-function version(){
+function version()
+{
 
     $version = "<b>Version</b> 1.2.2";
 

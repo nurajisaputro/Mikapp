@@ -51,12 +51,7 @@ class Test extends CI_Controller
         var_dump($resource);
     }
 
-    public function index()
-    {
-        include "LoginAPI.php";
-        $API = new RouterosAPI();
-        $API->connect(ip(), user(), pass());
-    }
+
 
     public function allUsers()
     {
@@ -81,5 +76,23 @@ class Test extends CI_Controller
 
         // $this->load->view('template/main');
         // $this->load->view('test/test');
+    }
+
+
+    public function index()
+    {
+        $API = new RouterosAPI();
+        $login = login();
+        $ip = $login['iptest'];
+        $username = $login['usernametest'];
+        $password = $login['passwordtest'];
+        $API->connect($ip, $username, $password);
+
+        $data = $API->comm('/interface/print');
+
+        // $data = json_decode($dataAPI, true);
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
     }
 }

@@ -23,10 +23,7 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="device-title">
-                <span class="device">DEVICE NAME</span>
-                <span class="device">
-                    <?= $systemName ?>
-                </span>
+                <span class="device">USER PPPOE</span>
             </div>
             <!-- HEAD INFO -->
             <div class="row mt-4">
@@ -45,21 +42,22 @@
                                 <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline" aria-describedby="example1_info">
                                     <thead>
                                         <tr>
-                                            <th style="width: 5%">
+                                            <th style="width: 10%">
                                                 <?= $countPpp ?> User
                                             </th>
-                                            <th style="width: 15%">Username</th>
+                                            <th style="width: 20%">Username</th>
                                             <th style="width: 10%">Paket</th>
                                             <th style="width: 10%">Status</th>
                                             <th style="width: 10%">last Connected</th>
                                             <th style="width: 10%">Reason Disconnect</th>
-                                            <th style="width: 15%">Mark As Isolir</th>
+                                            <th style="width: 10%">Router</th>
+                                            <th style="width: 20%">Mark As Isolir</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php
-                                        foreach ($allUsers as $data) {
+                                        foreach ($userR1 as $data) {
                                             // NAME USER
                                             $name = str_replace('@backbone.net', '', $data['name']);
                                             $id = str_replace('*', '', $data['.id']);
@@ -111,13 +109,80 @@
                                                 </th>
                                                 <th>
                                                 <?= $data['last-disconnect-reason']?>
-
+                                                </th>
+                                                <th>
+                                                    <?= $R1 ?>
                                                 </th>
                                                 <th>
                                                     <a class="btn btn-warning" href="<?= site_url('ppp/markUser/' . $id); ?>" onclick="return confirm('Tandai User <?= $name ?> Sebagai Belum Bayar?')">
                                                         Tandai Belum Bayar
                                                     </a>
                                                 </th>
+                                                <?php
+                                        }
+                                        
+                                        foreach ($userR2 as $data) {
+                                            // NAME USER
+                                            $name = str_replace('@backbone.net', '', $data['name']);
+                                            $id = str_replace('*', '', $data['.id']);
+                                        ?>
+                                            <tr>
+                                                <th>
+                                                    <?= $data['.id'] ?>
+                                                </th>
+                                                <th>
+                                                    <?= $name ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    $profile = $data['profile'];
+
+                                                    $paket1 = "Profile5M";
+                                                    $paket2 = "Profile10M";
+                                                    $paket3 = "Profile20M";
+                                                    $paket4 = "Profile50M";
+                                                    $paket5 = "Profile100M";
+                                                    if ($profile == $paket1) {
+                                                        echo "5 Mbps";
+                                                    } else if ($profile == $paket2) {
+                                                        echo "10Mbps";
+                                                    } else if ($profile == $paket3) {
+                                                        echo "20Mbps";
+                                                    } else if ($profile == $paket4) {
+                                                        echo "50Mbps";
+                                                    } else if ($profile == $paket5) {
+                                                        echo "100Mbps";
+                                                    } else {
+                                                        echo "Prio OR Disable";
+                                                    }
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?php
+                                                    $comment = $data['comment'];
+
+                                                    if(!$comment){
+                                                        echo "No Comment";
+                                                    }else{
+                                                        echo $comment;
+                                                    }
+                                                    ?>
+                                                </th>
+                                                <th>
+                                                    <?= $data['last-logged-out']?>
+                                                </th>
+                                                <th>
+                                                    -
+                                                </th>
+                                                <th>
+                                                    <?= $R2?>
+                                                </th>
+                                                <th>
+                                                    <a class="btn btn-warning" href="<?= site_url('ppp/markUser/' . $id); ?>" onclick="return confirm('Tandai User <?= $name ?> Sebagai Belum Bayar?')">
+                                                        Tandai Belum Bayar
+                                                    </a>
+                                                </th>
+                                            </tr>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

@@ -34,7 +34,7 @@ function wib_time($mount){
 		return $a['5'];
 	}
 	elseif ($mount === "07") {
-		
+		return $a['6'];
 	}
 	elseif ($mount === "08") {
 		return $a['7'];

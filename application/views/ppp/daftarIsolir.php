@@ -24,7 +24,7 @@
                     <table id="DataTable" class="table table-striped table-dark dataTable dtr-inline" aria-describedby="example1_info">
                         <thead>
                             <tr>
-                                <th style="width: 5%"><?= count($result)?></th>
+                                <th style="width: 5%"><?= count($result) ?></th>
                                 <th style="width: 15%">Username</th>
                                 <th style="width: 10%">Status</th>
                                 <th style="width: 15%">Action</th>
@@ -33,11 +33,11 @@
 
                         <tbody>
                             <?php
+                            $month = wib_time(date('m'));
                             foreach ($result as $data) {
                                 // NAME USER
                                 $name = str_replace('@backbone.net', '', $data['name']);
                                 $id = str_replace('*', '', $data['.id']);
-                                $month = wib_time(date('m'))
                             ?>
                                 <tr>
                                     <th>

@@ -50,23 +50,37 @@ class Ppp extends CI_Controller
     public function allUsers()
     {
         $API = new RouterosAPI();
+        $API2 = new RouterosAPI();
         $login = login();
         $ip = $login['ip'];
         $username = $login['username'];
         $password = $login['password'];
         $API->connect($ip, $username, $password);
 
-        $allusers = $API->comm('/ppp/secret/print');
-        $resource = $API->comm('/system/resource/print');
+        $ip2 = $login['ip1009'];
+        $username2 = $login['username1009'];
+        $password2 = $login['password1009'];
+        $API2->connect($ip2, $username2, $password2);
+
+        $userR1 = $API->comm('/ppp/secret/print');
+        $resource = $API->comm('/system/identity/print');
+
+        $userR2 = $API2->comm('/ppp/secret/print');
+        $resource2 = $API2->comm('/system/identity/print');
+
+        $count = count($userR1) + count($userR2);
 
         $data = [
-            'systemName' => $resource['0']['board-name'],
-            'countPpp' => count($allusers),
-            'allUsers' => $allusers,
-            'lastDisconnect' => $allusers[0]['last-logged-out'],
-            'reasonDisconnect' => $allusers[0]['last-disconnect-reason'],
+            'R1' => $resource['0']['name'],
+            'R2' => $resource2['0']['name'],
+            'countPpp' => $count,
+            'userR1' => $userR1,
+            'userR2' => $userR2,
+            'lastR1' => $userR1[0]['last-logged-out'],
+            'reasonR1' => $userR1[0]['last-disconnect-reason'],
+            'lastR2' => $userR2[0]['last-logged-out'],
+            // 'reasonR2' => $userR2[0]['last-disconnect-reason'],
         ];
-
         $this->load->view('template/main');
         $this->load->view('ppp/allUsers', $data);
     }
@@ -101,11 +115,18 @@ class Ppp extends CI_Controller
     {
         $API = new RouterosAPI();
         $login = login();
+        $profile = "ProfileDisconnect";
+
         $ip = $login['ip'];
         $username = $login['username'];
         $password = $login['password'];
         $API->connect($ip, $username, $password);
-        $profile = "ProfileDisconnect";
+
+        $ip2 = $login['ip1009'];
+        $username2 = $login['username1009'];
+        $password2 = $login['password1009'];
+        $API->connect($ip, $username, $password);
+        
 
         $getMonth = $this->input->post('bulan');
         if ($getMonth == null) {
@@ -194,9 +215,9 @@ class Ppp extends CI_Controller
 
         $API = new RouterosAPI();
         $login = login();
-        $ip = $login['ip'];
-        $username = $login['username'];
-        $password = $login['password'];
+        $ip = $login['ip1009'];
+        $username = $login['username1009'];
+        $password = $login['password1009'];
         $API->connect($ip, $username, $password);
 
         $now = date('d/m | H:i');
@@ -240,9 +261,9 @@ class Ppp extends CI_Controller
 
         $API = new RouterosAPI();
         $login = login();
-        $ip = $login['ip'];
-        $username = $login['username'];
-        $password = $login['password'];
+        $ip = $login['ip1009'];
+        $username = $login['username1009'];
+        $password = $login['password1009'];
         $API->connect($ip, $username, $password);
 
         $now = date('d/m | H:i');
@@ -394,9 +415,17 @@ class Ppp extends CI_Controller
     {
         $API = new RouterosAPI();
         $login = login();
+
         $ip = $login['ip'];
         $username = $login['username'];
         $password = $login['password'];
+
+        // IP TESTING GR3
+        // $ip = $login['iptest'];
+        // $username = $login['usernametest'];
+        // $password = $login['passwordtest'];
+
+
         $API->connect($ip, $username, $password);
 
         $profile = "ProfileDisconnect";
@@ -438,11 +467,13 @@ class Ppp extends CI_Controller
                         ));
 
                         $i--;
-                        sleep(0.1);
+                        sleep(0.7);
+
+                        $this->load->view('test/index');
                     }
                 }
             }
-            $this->load->view('status_code/202');
+            // $this->load->view('status_code/202');
             // echo "<a href='ppp/dataIsolir'>Back To Isolir Menu<a>";
         } else {
             echo "ERROR";
@@ -457,9 +488,14 @@ class Ppp extends CI_Controller
         $ip = $login['ip'];
         $username = $login['username'];
         $password = $login['password'];
+
+        // IP TESTING GR3
+        // $ip = $login['iptest'];
+        // $username = $login['usernametest'];
+        // $password = $login['passwordtest'];
+        
+
         $month = wib_time(date('m'));
-
-
         $API->connect($ip, $username, $password);
 
         $result = $API->comm('/ppp/secret/print', [
